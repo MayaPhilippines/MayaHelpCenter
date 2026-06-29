@@ -29,7 +29,6 @@
       background: #030807;
     }
 
-    /* Dark black-to-emerald green gradient background */
     body::before {
       content: '';
       position: fixed;
@@ -38,7 +37,6 @@
       z-index: 0;
     }
 
-    /* Ambient glowing light effects */
     .ambient-glow {
       position: fixed;
       border-radius: 50%;
@@ -63,7 +61,6 @@
       background: radial-gradient(circle, rgba(46, 242, 163, 0.04) 0%, transparent 70%);
     }
 
-    /* ========== MAIN CONTAINER ========== */
     .admin-container {
       max-width: 860px;
       width: 100%;
@@ -71,7 +68,6 @@
       z-index: 2;
     }
 
-    /* ========== GLASS PANEL ========== */
     .glass-panel {
       background: rgba(8, 18, 14, 0.70);
       backdrop-filter: blur(24px) saturate(180%);
@@ -88,7 +84,6 @@
       transition: box-shadow 0.4s ease, border-color 0.4s;
     }
 
-    /* Neon green outline - glowing border */
     .glass-panel::before {
       content: '';
       position: absolute;
@@ -104,7 +99,6 @@
       opacity: 0.8;
     }
 
-    /* Inner glow effect */
     .glass-panel::after {
       content: '';
       position: absolute;
@@ -112,6 +106,158 @@
       border-radius: 48px;
       background: radial-gradient(ellipse at 50% 0%, rgba(46, 242, 163, 0.02), transparent 70%);
       pointer-events: none;
+    }
+
+    /* ========== SETUP SECTION ========== */
+    .setup-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      min-height: 400px;
+    }
+
+    .setup-section.hidden {
+      display: none;
+    }
+
+    .setup-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      opacity: 0.6;
+    }
+
+    .setup-title {
+      color: #ffffff;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.02em;
+    }
+
+    .setup-subtitle {
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .setup-form {
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .setup-input-wrapper {
+      position: relative;
+    }
+
+    .setup-input-wrapper input {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.30);
+      border: 1px solid rgba(46, 242, 163, 0.08);
+      border-radius: 18px;
+      padding: 1rem 1.4rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      color: #ffffff;
+      outline: none;
+      transition: all 0.3s ease;
+      padding-right: 3.5rem;
+    }
+
+    .setup-input-wrapper input::placeholder {
+      color: rgba(255, 255, 255, 0.15);
+    }
+
+    .setup-input-wrapper input:focus {
+      border-color: rgba(46, 242, 163, 0.20);
+      box-shadow: 0 0 40px rgba(46, 242, 163, 0.04);
+      background: rgba(0, 0, 0, 0.35);
+    }
+
+    .setup-input-wrapper .toggle-visibility {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+
+    .setup-input-wrapper .toggle-visibility:hover {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .setup-btn {
+      background: linear-gradient(135deg, #2EF2A3, #1bcb86);
+      border: none;
+      padding: 1rem;
+      border-radius: 18px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #031009;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 40px rgba(46, 242, 163, 0.08);
+      letter-spacing: 0.02em;
+      width: 100%;
+    }
+
+    .setup-btn:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 60px rgba(46, 242, 163, 0.15);
+    }
+
+    .setup-btn:active {
+      transform: scale(0.97);
+    }
+
+    .setup-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .setup-error {
+      color: #ff5555;
+      font-size: 0.8rem;
+      text-align: center;
+      min-height: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .setup-error.show {
+      opacity: 1;
+    }
+
+    .setup-success {
+      color: #2EF2A3;
+      font-size: 0.8rem;
+      text-align: center;
+      min-height: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .setup-success.show {
+      opacity: 1;
+    }
+
+    .setup-hint {
+      color: rgba(255, 255, 255, 0.1);
+      font-size: 0.65rem;
+      text-align: center;
+      margin-top: 0.5rem;
     }
 
     /* ========== LOGIN SECTION ========== */
@@ -145,7 +291,7 @@
     .login-subtitle {
       color: rgba(255, 255, 255, 0.3);
       font-size: 0.9rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
       text-align: center;
     }
 
@@ -251,6 +397,22 @@
       font-size: 0.65rem;
       text-align: center;
       margin-top: 0.5rem;
+    }
+
+    .switch-mode {
+      color: rgba(255, 255, 255, 0.15);
+      font-size: 0.7rem;
+      text-align: center;
+      cursor: pointer;
+      transition: color 0.3s;
+      background: none;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      text-decoration: underline;
+    }
+
+    .switch-mode:hover {
+      color: rgba(255, 255, 255, 0.3);
     }
 
     /* ========== DASHBOARD CONTENT ========== */
@@ -825,11 +987,11 @@
         padding: 1.2rem 1.2rem;
       }
 
-      .login-title {
+      .setup-title, .login-title {
         font-size: 1.4rem;
       }
 
-      .login-form {
+      .setup-form, .login-form {
         max-width: 100%;
       }
     }
@@ -862,11 +1024,11 @@
         padding: 0.2rem 0.8rem;
       }
 
-      .login-icon {
+      .setup-icon, .login-icon {
         font-size: 3rem;
       }
 
-      .login-title {
+      .setup-title, .login-title {
         font-size: 1.2rem;
       }
     }
@@ -887,11 +1049,42 @@
     <!-- Main Glass Panel -->
     <div class="glass-panel">
       
+      <!-- ====== SETUP SECTION ====== -->
+      <div class="setup-section" id="setupSection">
+        <div class="setup-icon">🔑</div>
+        <h1 class="setup-title">Set Master Key</h1>
+        <p class="setup-subtitle">Create your admin secret key. This will be saved in Firebase.</p>
+        
+        <form class="setup-form" id="setupForm">
+          <div class="setup-input-wrapper">
+            <input 
+              type="password" 
+              id="setupKeyInput" 
+              placeholder="Enter your secret key..." 
+              autocomplete="off"
+            />
+            <button type="button" class="toggle-visibility" id="setupToggleVisibility">👁</button>
+          </div>
+          <div class="setup-input-wrapper">
+            <input 
+              type="password" 
+              id="setupConfirmInput" 
+              placeholder="Confirm secret key..." 
+              autocomplete="off"
+            />
+          </div>
+          <button type="submit" class="setup-btn" id="setupBtn">Set Master Key</button>
+          <div class="setup-error" id="setupError">Keys do not match. Please try again.</div>
+          <div class="setup-success" id="setupSuccess">✅ Master key saved successfully!</div>
+          <button type="button" class="switch-mode" id="switchToLogin">Already have a master key? Click here to login →</button>
+        </form>
+      </div>
+
       <!-- ====== LOGIN SECTION ====== -->
-      <div class="login-section" id="loginSection">
+      <div class="login-section hidden" id="loginSection">
         <div class="login-icon">🔐</div>
         <h1 class="login-title">Admin Access</h1>
-        <p class="login-subtitle">Enter the secret key to access the admin panel</p>
+        <p class="login-subtitle">Enter your secret key to access the admin panel</p>
         
         <form class="login-form" id="loginForm">
           <div class="login-input-wrapper">
@@ -901,11 +1094,11 @@
               placeholder="Enter secret key..." 
               autocomplete="off"
             />
-            <button type="button" class="toggle-visibility" id="toggleVisibility">👁</button>
+            <button type="button" class="toggle-visibility" id="loginToggleVisibility">👁</button>
           </div>
           <button type="submit" class="login-btn" id="loginBtn">Unlock Admin Panel</button>
           <div class="login-error" id="loginError">Invalid secret key. Please try again.</div>
-          <div class="login-hint">Contact administrator for the secret key</div>
+          <button type="button" class="switch-mode" id="switchToSetup">Don't have a master key? Set one up →</button>
         </form>
       </div>
 
@@ -1004,22 +1197,41 @@
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
 
+    console.log('🔐 Firebase initialized');
+
     // ============================================================
     // MAIN SCRIPT
     // ============================================================
     document.addEventListener('DOMContentLoaded', function() {
-      console.log('Admin panel loaded - Initializing...');
+      console.log('🔐 Admin panel loaded');
 
       // ========== DOM ELEMENTS ==========
+      const setupSection = document.getElementById('setupSection');
       const loginSection = document.getElementById('loginSection');
       const dashboardContent = document.getElementById('dashboardContent');
+      
+      // Setup elements
+      const setupForm = document.getElementById('setupForm');
+      const setupKeyInput = document.getElementById('setupKeyInput');
+      const setupConfirmInput = document.getElementById('setupConfirmInput');
+      const setupBtn = document.getElementById('setupBtn');
+      const setupError = document.getElementById('setupError');
+      const setupSuccess = document.getElementById('setupSuccess');
+      const setupToggleVisibility = document.getElementById('setupToggleVisibility');
+      
+      // Login elements
       const loginForm = document.getElementById('loginForm');
       const secretKeyInput = document.getElementById('secretKeyInput');
       const loginBtn = document.getElementById('loginBtn');
       const loginError = document.getElementById('loginError');
-      const toggleVisibility = document.getElementById('toggleVisibility');
-      const logoutBtn = document.getElementById('logoutBtn');
+      const loginToggleVisibility = document.getElementById('loginToggleVisibility');
       
+      // Switch buttons
+      const switchToLogin = document.getElementById('switchToLogin');
+      const switchToSetup = document.getElementById('switchToSetup');
+      
+      // Dashboard elements
+      const logoutBtn = document.getElementById('logoutBtn');
       const linkInput = document.getElementById('linkInput');
       const deployBtn = document.getElementById('deployBtn');
       const linksList = document.getElementById('linksList');
@@ -1027,35 +1239,124 @@
       const linkCountEl = document.getElementById('linkCount');
 
       let isLoggedIn = false;
+      let setupMode = true;
 
-      // ========== TOGGLE PASSWORD VISIBILITY ==========
-      let isPasswordVisible = false;
-      toggleVisibility.addEventListener('click', function() {
-        isPasswordVisible = !isPasswordVisible;
-        secretKeyInput.type = isPasswordVisible ? 'text' : 'password';
-        this.textContent = isPasswordVisible ? '🙈' : '👁';
+      // ========== TOGGLE VISIBILITY ==========
+      let isSetupVisible = false;
+      setupToggleVisibility.addEventListener('click', function() {
+        isSetupVisible = !isSetupVisible;
+        setupKeyInput.type = isSetupVisible ? 'text' : 'password';
+        setupConfirmInput.type = isSetupVisible ? 'text' : 'password';
+        this.textContent = isSetupVisible ? '🙈' : '👁';
       });
 
-      // ========== CHECK LOGIN STATUS ==========
-      function checkLoginStatus() {
-        const session = sessionStorage.getItem('adminLoggedIn');
-        if (session === 'true') {
-          isLoggedIn = true;
-          showDashboard();
-        } else {
-          showLogin();
-        }
-      }
+      let isLoginVisible = false;
+      loginToggleVisibility.addEventListener('click', function() {
+        isLoginVisible = !isLoginVisible;
+        secretKeyInput.type = isLoginVisible ? 'text' : 'password';
+        this.textContent = isLoginVisible ? '🙈' : '👁';
+      });
 
-      function showLogin() {
-        loginSection.classList.remove('hidden');
-        dashboardContent.classList.remove('visible');
-      }
-
-      function showDashboard() {
+      // ========== SWITCH MODES ==========
+      function switchToSetupMode() {
+        setupSection.classList.remove('hidden');
         loginSection.classList.add('hidden');
-        dashboardContent.classList.add('visible');
-        loadLinks();
+        setupMode = true;
+        setupError.classList.remove('show');
+        setupSuccess.classList.remove('show');
+        setupKeyInput.value = '';
+        setupConfirmInput.value = '';
+        setupKeyInput.focus();
+      }
+
+      function switchToLoginMode() {
+        setupSection.classList.add('hidden');
+        loginSection.classList.remove('hidden');
+        setupMode = false;
+        loginError.classList.remove('show');
+        secretKeyInput.value = '';
+        secretKeyInput.focus();
+      }
+
+      switchToLogin.addEventListener('click', switchToLoginMode);
+      switchToSetup.addEventListener('click', switchToSetupMode);
+
+      // ========== CHECK MASTER KEY EXISTS ==========
+      function checkMasterKeyExists() {
+        database.ref('admin/masterkey').once('value')
+          .then((snapshot) => {
+            const key = snapshot.val();
+            if (key) {
+              // Master key exists, show login
+              switchToLoginMode();
+            } else {
+              // No master key, show setup
+              switchToSetupMode();
+            }
+          })
+          .catch((error) => {
+            console.error('Error checking master key:', error);
+            switchToSetupMode();
+          });
+      }
+
+      // ========== SETUP MASTER KEY ==========
+      async function handleSetup(e) {
+        e.preventDefault();
+        
+        const key = setupKeyInput.value.trim();
+        const confirm = setupConfirmInput.value.trim();
+        
+        if (!key) {
+          setupError.textContent = '⚠️ Please enter a secret key';
+          setupError.classList.add('show');
+          setupSuccess.classList.remove('show');
+          return;
+        }
+        
+        if (key.length < 6) {
+          setupError.textContent = '⚠️ Secret key must be at least 6 characters';
+          setupError.classList.add('show');
+          setupSuccess.classList.remove('show');
+          return;
+        }
+        
+        if (key !== confirm) {
+          setupError.textContent = '❌ Keys do not match. Please try again.';
+          setupError.classList.add('show');
+          setupSuccess.classList.remove('show');
+          return;
+        }
+
+        setupBtn.disabled = true;
+        setupBtn.textContent = '⏳ Saving...';
+        setupError.classList.remove('show');
+        setupSuccess.classList.remove('show');
+
+        try {
+          await database.ref('admin/masterkey').set(key);
+          console.log('✅ Master key saved successfully!');
+          
+          setupSuccess.textContent = '✅ Master key saved successfully! You can now login.';
+          setupSuccess.classList.add('show');
+          setupBtn.disabled = false;
+          setupBtn.textContent = 'Set Master Key';
+          setupKeyInput.value = '';
+          setupConfirmInput.value = '';
+          
+          // Switch to login after 2 seconds
+          setTimeout(() => {
+            switchToLoginMode();
+            showToast('✅ Master key created! Please login with your new key.');
+          }, 1500);
+          
+        } catch (error) {
+          console.error('❌ Error saving master key:', error);
+          setupError.textContent = '❌ Error saving key: ' + error.message;
+          setupError.classList.add('show');
+          setupBtn.disabled = false;
+          setupBtn.textContent = 'Set Master Key';
+        }
       }
 
       // ========== LOGIN FUNCTION ==========
@@ -1075,24 +1376,27 @@
         loginError.classList.remove('show');
 
         try {
-          // Get the master key from Firebase
+          console.log('🔍 Fetching master key from Firebase...');
           const snapshot = await database.ref('admin/masterkey').once('value');
           const masterKey = snapshot.val();
           
-          console.log('Master key from Firebase:', masterKey);
-          console.log('Entered key:', secretKey);
+          console.log('📌 Master key from Firebase:', masterKey);
+          console.log('🔐 Entered key:', secretKey);
 
           if (masterKey && secretKey === masterKey) {
-            // Login successful
+            // ✅ Login successful
+            console.log('✅ Login successful!');
             sessionStorage.setItem('adminLoggedIn', 'true');
             isLoggedIn = true;
             showDashboard();
             loginBtn.disabled = false;
             loginBtn.textContent = 'Unlock Admin Panel';
             secretKeyInput.value = '';
+            loginError.classList.remove('show');
             showToast('✅ Login successful! Welcome admin.');
           } else {
-            // Login failed
+            // ❌ Login failed
+            console.log('❌ Login failed - Invalid key');
             loginError.textContent = '❌ Invalid secret key. Please try again.';
             loginError.classList.add('show');
             loginBtn.disabled = false;
@@ -1101,7 +1405,7 @@
             secretKeyInput.focus();
           }
         } catch (error) {
-          console.error('Error verifying key:', error);
+          console.error('❌ Error verifying key:', error);
           loginError.textContent = '⚠️ Error connecting to server. Please try again.';
           loginError.classList.add('show');
           loginBtn.disabled = false;
@@ -1109,7 +1413,22 @@
         }
       }
 
-      // ========== LOGOUT FUNCTION ==========
+      // ========== SHOW/HIDE DASHBOARD ==========
+      function showDashboard() {
+        setupSection.classList.add('hidden');
+        loginSection.classList.add('hidden');
+        dashboardContent.classList.add('visible');
+        loadLinks();
+      }
+
+      function showLogin() {
+        setupSection.classList.add('hidden');
+        loginSection.classList.remove('hidden');
+        dashboardContent.classList.remove('visible');
+        checkMasterKeyExists();
+      }
+
+      // ========== LOGOUT ==========
       function handleLogout() {
         sessionStorage.removeItem('adminLoggedIn');
         isLoggedIn = false;
@@ -1262,6 +1581,7 @@
       }
 
       // ========== EVENT LISTENERS ==========
+      setupForm.addEventListener('submit', handleSetup);
       loginForm.addEventListener('submit', handleLogin);
       logoutBtn.addEventListener('click', handleLogout);
       deployBtn.addEventListener('click', deployLink);
@@ -1273,12 +1593,20 @@
       });
 
       // ========== INITIALIZE ==========
-      checkLoginStatus();
+      // Check if already logged in
+      const session = sessionStorage.getItem('adminLoggedIn');
+      if (session === 'true') {
+        isLoggedIn = true;
+        showDashboard();
+      } else {
+        // Check if master key exists
+        checkMasterKeyExists();
+      }
 
       // Make deleteLink available globally
       window.deleteLink = deleteLink;
       
-      console.log('Admin panel initialized successfully');
+      console.log('✅ Admin panel initialized successfully');
     });
   </script>
 </body>
