@@ -18,9 +18,7 @@ const database = firebase.database();
 const linkInput = document.getElementById('linkInput');
 const deployBtn = document.getElementById('deployBtn');
 const linksList = document.getElementById('linksList');
-const totalLinksEl = document.getElementById('totalLinks');
 const totalClicksEl = document.getElementById('totalClicks');
-const activeLinksEl = document.getElementById('activeLinks');
 const linkCountEl = document.getElementById('linkCount');
 
 // Generate short hash
@@ -88,7 +86,7 @@ function deployLink() {
         .then(() => {
             showToast('✅ Link deployed successfully!');
             linkInput.value = '';
-            loadLinks();
+            // No need to call loadLinks() as Firebase real-time will update automatically
         })
         .catch((error) => {
             showToast('❌ Error deploying link: ' + error.message, true);
@@ -102,21 +100,20 @@ function deleteLink(linkId) {
     database.ref('links/' + linkId).remove()
         .then(() => {
             showToast('🗑️ Link deleted successfully');
-            loadLinks();
+            // No need to call loadLinks() as Firebase real-time will update automatically
         })
         .catch((error) => {
             showToast('❌ Error deleting link: ' + error.message, true);
         });
 }
 
-// Load links from Firebase
+// Load links from Firebase with real-time updates
 function loadLinks() {
     database.ref('links').orderByChild('createdAt').on('value', (snapshot) => {
         const links = snapshot.val();
         const linksListEl = document.getElementById('linksList');
-        let totalLinks = 0;
         let totalClicks = 0;
-        let activeLinks = 0;
+        let totalLinks = 0;
         
         if (!links) {
             linksListEl.innerHTML = `
@@ -126,7 +123,7 @@ function loadLinks() {
                     <span class="empty-sub">Add a link using the form above</span>
                 </div>
             `;
-            updateStats(0, 0, 0);
+            updateStats(0, 0);
             return;
         }
         
@@ -137,7 +134,6 @@ function loadLinks() {
             const link = links[id];
             totalLinks++;
             totalClicks += link.clicks || 0;
-            activeLinks++;
             
             const displayHash = link.hash || generateHash(link.url);
             
@@ -157,16 +153,14 @@ function loadLinks() {
         });
         
         linksListEl.innerHTML = html;
-        updateStats(totalLinks, totalClicks, activeLinks);
+        updateStats(totalLinks, totalClicks);
         linkCountEl.textContent = `${totalLinks} links`;
     });
 }
 
-// Update stats dashboard
-function updateStats(totalLinks, totalClicks, activeLinks) {
-    totalLinksEl.textContent = totalLinks;
+// Update stats dashboard - simplified
+function updateStats(totalLinks, totalClicks) {
     totalClicksEl.textContent = totalClicks;
-    activeLinksEl.textContent = activeLinks;
 }
 
 // ========== EVENT LISTENERS ==========
