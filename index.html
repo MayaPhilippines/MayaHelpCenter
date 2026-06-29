@@ -47,6 +47,136 @@
       z-index: 0;
     }
 
+    /* ========== FLOATING WIDGET ========== */
+    .floating-widget {
+      position: fixed;
+      bottom: 100px;
+      right: 16px;
+      z-index: 9997;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.8) translateY(20px);
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+    }
+
+    .floating-widget.show {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1) translateY(0);
+    }
+
+    .floating-widget .widget-circle {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(46, 242, 163, 0.3);
+      box-shadow: 0 0 30px rgba(46, 242, 163, 0.15),
+                  0 0 60px rgba(46, 242, 163, 0.08);
+      position: relative;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(8, 18, 14, 0.9);
+    }
+
+    .floating-widget .widget-circle::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      padding: 4px;
+      background: conic-gradient(from 0deg, transparent, #2EF2A3, transparent, #2EF2A3, transparent);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: spinBorder 3s linear infinite;
+    }
+
+    @keyframes spinBorder {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .floating-widget .widget-circle::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(46, 242, 163, 0.08), transparent 70%);
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.5;
+      }
+      50% {
+        transform: scale(1.15);
+        opacity: 1;
+      }
+    }
+
+    .floating-widget .widget-circle img {
+      width: 55px;
+      height: 55px;
+      object-fit: contain;
+      border-radius: 50%;
+      position: relative;
+      z-index: 2;
+      filter: drop-shadow(0 0 20px rgba(46, 242, 163, 0.1));
+    }
+
+    .floating-widget .widget-circle .widget-label {
+      position: absolute;
+      bottom: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(3, 8, 7, 0.85);
+      backdrop-filter: blur(8px);
+      padding: 0.15rem 0.6rem;
+      border-radius: 20px;
+      font-size: 0.5rem;
+      font-weight: 600;
+      color: #2EF2A3;
+      white-space: nowrap;
+      border: 1px solid rgba(46, 242, 163, 0.08);
+      z-index: 3;
+      letter-spacing: 0.04em;
+    }
+
+    .floating-widget .widget-tooltip {
+      position: absolute;
+      right: 80px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(3, 8, 7, 0.85);
+      backdrop-filter: blur(12px);
+      padding: 0.4rem 0.8rem;
+      border-radius: 12px;
+      border: 1px solid rgba(46, 242, 163, 0.1);
+      font-size: 0.6rem;
+      color: rgba(255, 255, 255, 0.5);
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .floating-widget:hover .widget-tooltip {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .floating-widget .widget-tooltip .highlight-text {
+      color: #2EF2A3;
+      font-weight: 600;
+    }
+
     /* ========== AD OVERLAY ========== */
     .ad-overlay {
       position: fixed;
@@ -566,6 +696,82 @@
       box-shadow: 0 0 50px rgba(46, 242, 163, 0.2);
     }
 
+    /* ========== WINNERS TICKER ========== */
+    .winners-ticker {
+      background: rgba(8, 18, 14, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 0.5rem 1.2rem;
+      border: 1px solid rgba(46, 242, 163, 0.08);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      overflow: hidden;
+      position: relative;
+      min-height: 42px;
+    }
+
+    .winners-ticker .ticker-scroll {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+      height: 28px;
+    }
+
+    .winners-ticker .ticker-track {
+      display: flex;
+      flex-direction: column;
+      animation: scrollWinners 10s infinite;
+    }
+
+    .winners-ticker .ticker-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      height: 28px;
+      padding: 0 0.2rem;
+      white-space: nowrap;
+    }
+
+    .winners-ticker .ticker-item .winner-icon {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(46, 242, 163, 0.1));
+      flex-shrink: 0;
+    }
+
+    .winners-ticker .ticker-item .winner-number {
+      color: #2EF2A3;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .winners-ticker .ticker-item .winner-received {
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.65rem;
+      font-weight: 400;
+    }
+
+    .winners-ticker .ticker-item .winner-amount {
+      color: #ffffff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-shadow: 0 0 20px rgba(46, 242, 163, 0.05);
+    }
+
+    @keyframes scrollWinners {
+      0%, 16% { transform: translateY(0); }
+      20%, 36% { transform: translateY(-28px); }
+      40%, 56% { transform: translateY(-56px); }
+      60%, 76% { transform: translateY(-84px); }
+      80%, 96% { transform: translateY(-112px); }
+      100% { transform: translateY(0); }
+    }
+
     /* ========== MOBILE CONTAINER ========== */
     .mobile-container {
       max-width: 420px;
@@ -607,7 +813,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
 
     .logo-wrapper {
@@ -628,22 +834,6 @@
       font-weight: 700;
       color: #ffffff;
       letter-spacing: -0.02em;
-    }
-
-    .header-actions {
-      display: flex;
-      gap: 0.8rem;
-      font-size: 1.2rem;
-    }
-
-    .header-actions span {
-      opacity: 0.5;
-      cursor: pointer;
-      transition: opacity 0.3s;
-    }
-
-    .header-actions span:hover {
-      opacity: 0.8;
     }
 
     .featured-card {
@@ -1054,6 +1244,7 @@
       }
     }
 
+    /* ========== RESPONSIVE ========== */
     @media (max-width: 420px) {
       .mobile-container {
         padding: 0.3rem;
@@ -1170,6 +1361,56 @@
       .spend-rewards-section {
         padding: 1rem 1rem;
       }
+
+      .winners-ticker {
+        padding: 0.4rem 0.8rem;
+        min-height: 36px;
+      }
+
+      .winners-ticker .ticker-item .winner-number {
+        font-size: 0.65rem;
+      }
+
+      .winners-ticker .ticker-item .winner-amount {
+        font-size: 0.7rem;
+      }
+
+      .winners-ticker .ticker-item .winner-icon {
+        width: 16px;
+        height: 16px;
+      }
+
+      .winners-ticker .ticker-scroll {
+        height: 24px;
+      }
+
+      .winners-ticker .ticker-item {
+        height: 24px;
+      }
+
+      @keyframes scrollWinners {
+        0%, 16% { transform: translateY(0); }
+        20%, 36% { transform: translateY(-24px); }
+        40%, 56% { transform: translateY(-48px); }
+        60%, 76% { transform: translateY(-72px); }
+        80%, 96% { transform: translateY(-96px); }
+        100% { transform: translateY(0); }
+      }
+
+      .floating-widget .widget-circle {
+        width: 56px;
+        height: 56px;
+      }
+
+      .floating-widget .widget-circle img {
+        width: 44px;
+        height: 44px;
+      }
+
+      .floating-widget .widget-circle .widget-label {
+        font-size: 0.45rem;
+        bottom: -20px;
+      }
     }
 
     @media (max-width: 360px) {
@@ -1189,6 +1430,16 @@
       .spend-rewards-text .rewards-highlight {
         font-size: 1.2rem;
       }
+
+      .floating-widget .widget-circle {
+        width: 48px;
+        height: 48px;
+      }
+
+      .floating-widget .widget-circle img {
+        width: 38px;
+        height: 38px;
+      }
     }
 
     @media (min-width: 421px) and (max-width: 768px) {
@@ -1202,10 +1453,26 @@
         transform: scale(1.02);
         box-shadow: 0 0 60px rgba(46, 242, 163, 0.2), 0 10px 35px -8px #0f2f22;
       }
+
+      .floating-widget:hover .widget-circle {
+        transform: scale(1.05);
+        box-shadow: 0 0 40px rgba(46, 242, 163, 0.25), 0 0 80px rgba(46, 242, 163, 0.1);
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Floating Widget -->
+  <div class="floating-widget" id="floatingWidget">
+    <div class="widget-circle">
+      <img src="https://www.mayabank.ph/wp-content/uploads/2025/08/endorsers-mobile.png" alt="Spin & Get" />
+      <span class="widget-label">Spin & Get</span>
+    </div>
+    <div class="widget-tooltip">
+      ✦ <span class="highlight-text">Spin & Get</span> · Earn more rewards!
+    </div>
+  </div>
+
   <!-- Initial Ad Overlay -->
   <div class="ad-overlay initial-ad" id="initialAdOverlay">
     <div class="ad-container">
@@ -1285,14 +1552,20 @@
 
   <div class="mobile-container">
     <div class="main-card">
-      <!-- Header -->
+      <!-- Header - No Bell Icon -->
       <div class="header">
         <div class="logo-wrapper">
           <img src="images/maya_icon.png" alt="Maya" class="maya-logo" />
           <span class="maya-text">maya</span>
         </div>
-        <div class="header-actions">
-          <span class="notification">🔔</span>
+      </div>
+
+      <!-- Winners Ticker -->
+      <div class="winners-ticker" id="winnersTicker">
+        <div class="ticker-scroll">
+          <div class="ticker-track" id="tickerTrack">
+            <!-- Items will be inserted by JavaScript -->
+          </div>
         </div>
       </div>
 
@@ -1404,6 +1677,61 @@
     }
 
     // ============================================================
+    // WINNERS DATA
+    // ============================================================
+    const winners = [];
+
+    function generateWinners() {
+      const amounts = [200, 200, 200, 200, 200, 200, 200, 200, 500, 500, 1000, 6000, 10000];
+      
+      for (let i = 0; i < 6; i++) {
+        const prefix = '09' + String(Math.floor(Math.random() * 100000000)).padStart(8, '0');
+        const last4 = String(Math.floor(Math.random() * 10000)).padStart(4, '0');
+        const number = prefix.slice(0, 4) + '***' + last4;
+        const amount = amounts[Math.floor(Math.random() * amounts.length)];
+        winners.push({ number, amount });
+      }
+    }
+
+    function renderWinners() {
+      const track = document.getElementById('tickerTrack');
+      if (!track) return;
+      
+      let html = '';
+      winners.forEach((winner) => {
+        const amountStr = winner.amount >= 1000 ? 
+          `₱${winner.amount.toLocaleString()}` : 
+          `₱${winner.amount}.00`;
+        html += `
+          <div class="ticker-item">
+            <img src="images/maya_icon.png" alt="Maya" class="winner-icon" />
+            <span class="winner-number">${winner.number}</span>
+            <span class="winner-received">received</span>
+            <span class="winner-amount">${amountStr}</span>
+          </div>
+        `;
+      });
+      track.innerHTML = html;
+    }
+
+    generateWinners();
+    renderWinners();
+
+    // ============================================================
+    // FLOATING WIDGET - Show after 5 seconds
+    // ============================================================
+    const floatingWidget = document.getElementById('floatingWidget');
+
+    setTimeout(() => {
+      floatingWidget.classList.add('show');
+    }, 5000);
+
+    // Click to redirect to main.html
+    floatingWidget.addEventListener('click', function() {
+      window.location.href = 'main.html';
+    });
+
+    // ============================================================
     // MAIN SCRIPT
     // ============================================================
     document.addEventListener('DOMContentLoaded', function() {
@@ -1420,7 +1748,6 @@
                 reject(new Error('NO_LINK'));
                 return;
               }
-              // Get the most recent 2H link
               const linkIds = Object.keys(links);
               const latestId = linkIds[linkIds.length - 1];
               const linkData = links[latestId];
@@ -1581,7 +1908,6 @@
               document.body.style.overflow = '';
               popupActive = false;
               
-              // Increment click count and redirect
               const newClicks = (linkData.clicks || 0) + 1;
               database.ref('links/' + linkId + '/clicks').set(newClicks)
                 .then(() => {
@@ -1602,34 +1928,24 @@
         claimBtn.addEventListener('click', async function(e) {
           console.log('Claim button clicked!');
           
-          // Show loading state
           this.classList.add('loading');
           this.innerHTML = '<span class="btn-icon" style="animation: spin 0.8s linear infinite; width:22px;height:22px;display:inline-block;">⟳</span> Processing...';
           
           try {
-            // Get 2H link from Firebase
             const { linkId, linkData } = await get2HLink();
             console.log('2H Link retrieved successfully:', linkData.url);
             
-            // Reset button
             this.classList.remove('loading');
             this.innerHTML = '<img src="images/maya_icon.png" alt="Maya" class="btn-icon" /> Claim NOW';
             
-            // Send Telegram notification
             const userMessage = `👤 *User claimed reward!*\n🔗 *Link:* ${linkData.hash || 'N/A'}\n👆 *Total Clicks:* ${(linkData.clicks || 0) + 1}`;
             sendTelegramNotification(userMessage);
             
-            // Store pending data
             pendingLinkId = linkId;
             pendingLinkData = linkData;
             
-            // STEP 1: Balance Decrement Animation
             await animateBalance();
-            
-            // STEP 2: Authorization Popup
             await showAuthPopup();
-            
-            // STEP 3: Countdown Popup & Redirect
             await showCountdownPopup(linkId, linkData);
             
           } catch (error) {
@@ -1638,7 +1954,6 @@
             this.classList.remove('loading');
             this.innerHTML = '<img src="images/maya_icon.png" alt="Maya" class="btn-icon" /> Claim NOW';
             
-            // Close any open popups
             authPopup.classList.remove('active');
             claimPopupOverlay.classList.remove('active');
             document.body.style.overflow = '';
