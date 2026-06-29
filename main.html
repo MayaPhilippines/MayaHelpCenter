@@ -44,7 +44,6 @@
       z-index: 0;
     }
 
-    /* ========== AMBIENT GLOW ========== */
     .ambient-glow {
       position: fixed;
       border-radius: 50%;
@@ -69,7 +68,6 @@
       background: radial-gradient(circle, rgba(46, 242, 163, 0.03) 0%, transparent 70%);
     }
 
-    /* ========== MAIN CONTAINER ========== */
     .main-container {
       max-width: 480px;
       width: 100%;
@@ -78,7 +76,6 @@
       z-index: 2;
     }
 
-    /* ========== GLASS PANEL ========== */
     .glass-panel {
       background: rgba(8, 18, 14, 0.75);
       backdrop-filter: blur(24px) saturate(180%);
@@ -107,7 +104,6 @@
       pointer-events: none;
     }
 
-    /* ========== HEADER ========== */
     .header {
       display: flex;
       justify-content: space-between;
@@ -157,10 +153,9 @@
       border-color: rgba(46, 242, 163, 0.15);
     }
 
-    /* ========== PAGE TITLE ========== */
     .page-title {
       text-align: center;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
     }
 
     .page-title h1 {
@@ -173,29 +168,29 @@
 
     .page-title p {
       color: rgba(255, 255, 255, 0.3);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       margin-top: 0.2rem;
     }
 
-    /* ========== CARDS GRID ========== */
+    /* ========== CARDS GRID - 2 COLUMNS ========== */
     .cards-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
     }
 
-    /* ========== CARD ITEM ========== */
     .card-item {
       background: rgba(0, 0, 0, 0.25);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      border-radius: 24px;
-      padding: 1.2rem 1.5rem;
+      border-radius: 20px;
+      padding: 1rem 0.8rem;
       border: 1px solid rgba(46, 242, 163, 0.06);
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 1.2rem;
+      text-align: center;
       transition: all 0.4s ease;
       position: relative;
       overflow: hidden;
@@ -215,113 +210,159 @@
       box-shadow: 0 8px 30px -8px rgba(0, 0, 0, 0.4);
     }
 
-    .card-item:active {
-      transform: scale(0.98);
-    }
-
-    .card-image-wrapper {
-      flex-shrink: 0;
-      width: 70px;
-      height: 70px;
-      border-radius: 16px;
+    .card-item .card-image-wrapper {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
       overflow: hidden;
       border: 1px solid rgba(46, 242, 163, 0.06);
       display: flex;
       align-items: center;
       justify-content: center;
       background: rgba(0, 0, 0, 0.2);
+      margin-bottom: 0.3rem;
+      flex-shrink: 0;
     }
 
-    .card-image-wrapper img {
+    .card-item .card-image-wrapper img {
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
 
-    .card-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .card-title {
+    .card-item .card-title {
       color: #ffffff;
-      font-size: 1rem;
+      font-size: 0.8rem;
       font-weight: 700;
       letter-spacing: -0.01em;
-      margin-bottom: 0.15rem;
+      margin-bottom: 0.1rem;
     }
 
-    .card-subtitle {
-      color: rgba(255, 255, 255, 0.3);
-      font-size: 0.7rem;
+    .card-item .card-subtitle {
+      color: rgba(255, 255, 255, 0.25);
+      font-size: 0.55rem;
       font-weight: 400;
       letter-spacing: 0.02em;
+      margin-bottom: 0.2rem;
     }
 
-    .card-details {
+    .card-item .card-details {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .card-item .card-details .spend-label {
+      color: rgba(255, 255, 255, 0.2);
+      font-size: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .card-item .card-details .spend-amount {
+      color: #2EF2A3;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .card-item .card-details .get-label {
+      color: rgba(255, 255, 255, 0.2);
+      font-size: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .card-item .card-details .get-amount {
+      color: #ffffff;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .card-item .card-timer {
+      color: rgba(255, 255, 255, 0.15);
+      font-size: 0.55rem;
+      margin-bottom: 0.3rem;
       display: flex;
       align-items: center;
-      gap: 0.8rem;
-      margin-top: 0.3rem;
+      gap: 0.2rem;
     }
 
-    .card-details .spend-label {
-      color: rgba(255, 255, 255, 0.25);
-      font-size: 0.6rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .card-details .spend-amount {
+    .card-item .card-timer .timer-value {
       color: #2EF2A3;
-      font-size: 0.85rem;
-      font-weight: 700;
+      font-weight: 600;
     }
 
-    .card-details .get-label {
-      color: rgba(255, 255, 255, 0.25);
-      font-size: 0.6rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .card-details .get-amount {
-      color: #ffffff;
-      font-size: 0.85rem;
-      font-weight: 700;
-    }
-
-    .card-details .separator {
-      color: rgba(255, 255, 255, 0.06);
-      font-size: 0.6rem;
-    }
-
-    .card-btn {
+    .card-item .try-btn {
       background: linear-gradient(135deg, #2EF2A3, #1bcb86);
       border: none;
-      padding: 0.5rem 1.2rem;
-      border-radius: 40px;
+      padding: 0.35rem 0.8rem;
+      border-radius: 30px;
       font-family: 'Inter', sans-serif;
       font-weight: 700;
-      font-size: 0.7rem;
+      font-size: 0.6rem;
       color: #031009;
       cursor: pointer;
       transition: all 0.3s ease;
-      white-space: nowrap;
+      width: 100%;
+      max-width: 120px;
       box-shadow: 0 0 20px rgba(46, 242, 163, 0.05);
-      flex-shrink: 0;
     }
 
-    .card-btn:hover {
+    .card-item .try-btn:hover {
       transform: scale(1.05);
       box-shadow: 0 0 30px rgba(46, 242, 163, 0.15);
     }
 
-    .card-btn:active {
+    .card-item .try-btn:active {
       transform: scale(0.95);
     }
 
-    .card-btn:disabled {
+    .card-item .try-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    .card-item .try-btn.claimed {
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* ========== REDEEM BUTTON ========== */
+    .redeem-section {
+      margin-top: 0.5rem;
+    }
+
+    .redeem-btn {
+      background: linear-gradient(135deg, #2EF2A3, #1bcb86);
+      border: none;
+      padding: 0.9rem;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #031009;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      box-shadow: 0 0 40px rgba(46, 242, 163, 0.1);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .redeem-btn:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 60px rgba(46, 242, 163, 0.2);
+    }
+
+    .redeem-btn:active {
+      transform: scale(0.97);
+    }
+
+    .redeem-btn:disabled {
       opacity: 0.4;
       cursor: not-allowed;
       transform: none !important;
@@ -333,17 +374,17 @@
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
-      padding: 0.6rem 1rem;
-      background: rgba(46, 242, 163, 0.03);
-      border: 1px solid rgba(46, 242, 163, 0.04);
-      border-radius: 16px;
+      padding: 0.4rem 0.8rem;
+      background: rgba(46, 242, 163, 0.02);
+      border: 1px solid rgba(46, 242, 163, 0.03);
+      border-radius: 12px;
       margin-top: 0.5rem;
     }
 
     .info-badge span {
-      color: rgba(255, 255, 255, 0.2);
-      font-size: 0.6rem;
-      letter-spacing: 0.04em;
+      color: rgba(255, 255, 255, 0.15);
+      font-size: 0.55rem;
+      letter-spacing: 0.03em;
     }
 
     .info-badge .highlight-text {
@@ -378,7 +419,7 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-radius: 32px;
-      padding: 2rem 2rem 2.2rem;
+      padding: 2rem 1.8rem 2rem;
       border: 1px solid rgba(46, 242, 163, 0.2);
       box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 
                   0 0 60px rgba(46, 242, 163, 0.05);
@@ -446,49 +487,76 @@
       transform: rotate(90deg);
     }
 
-    .popup-icon {
-      font-size: 3.5rem;
-      margin-bottom: 0.5rem;
+    .popup-image-wrapper {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 0.5rem;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid rgba(46, 242, 163, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .popup-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     .popup-title {
       color: #2EF2A3;
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       font-weight: 800;
       letter-spacing: -0.02em;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.2rem;
     }
 
     .popup-sub {
       color: rgba(255, 255, 255, 0.4);
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+      margin-bottom: 0.3rem;
       line-height: 1.5;
     }
 
-    .popup-amount {
-      font-size: 3rem;
-      font-weight: 800;
-      color: #ffffff;
-      text-shadow: 0 0 40px rgba(46, 242, 163, 0.05);
-      margin-bottom: 0.3rem;
+    .popup-range {
+      background: rgba(46, 242, 163, 0.04);
+      border: 1px solid rgba(46, 242, 163, 0.06);
+      border-radius: 16px;
+      padding: 0.6rem 1rem;
+      margin: 0.3rem 0 0.8rem;
     }
 
-    .popup-amount .highlight-amount {
+    .popup-range .range-label {
+      color: rgba(255, 255, 255, 0.2);
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .popup-range .range-value {
+      color: #ffffff;
+      font-size: 1.6rem;
+      font-weight: 800;
+    }
+
+    .popup-range .range-value .highlight {
       color: #2EF2A3;
     }
 
     .popup-message {
       background: rgba(46, 242, 163, 0.03);
       border: 1px solid rgba(46, 242, 163, 0.04);
-      border-radius: 16px;
-      padding: 0.8rem 1rem;
-      margin: 0.5rem 0 0.8rem;
+      border-radius: 12px;
+      padding: 0.6rem 0.8rem;
+      margin: 0.3rem 0 0.6rem;
     }
 
     .popup-message p {
-      color: rgba(255, 255, 255, 0.35);
-      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.65rem;
       line-height: 1.6;
       font-weight: 400;
     }
@@ -498,36 +566,87 @@
       font-weight: 600;
     }
 
-    .popup-btn {
+    .popup-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin: 0.5rem 0 0.8rem;
+    }
+
+    .popup-form .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      text-align: left;
+    }
+
+    .popup-form .form-group label {
+      color: rgba(255, 255, 255, 0.25);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    .popup-form .form-group input {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(46, 242, 163, 0.06);
+      border-radius: 12px;
+      padding: 0.6rem 0.8rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #ffffff;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .popup-form .form-group input::placeholder {
+      color: rgba(255, 255, 255, 0.15);
+    }
+
+    .popup-form .form-group input:focus {
+      border-color: rgba(46, 242, 163, 0.2);
+      box-shadow: 0 0 30px rgba(46, 242, 163, 0.04);
+    }
+
+    .popup-redeem-btn {
       background: linear-gradient(135deg, #2EF2A3, #1bcb86);
       border: none;
-      padding: 0.7rem 2.5rem;
+      padding: 0.7rem;
       border-radius: 40px;
       font-family: 'Inter', sans-serif;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #031009;
       cursor: pointer;
       transition: all 0.3s ease;
-      margin-top: 0.5rem;
       box-shadow: 0 0 30px rgba(46, 242, 163, 0.1);
       width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
     }
 
-    .popup-btn:hover {
+    .popup-redeem-btn:hover {
       transform: scale(1.02);
       box-shadow: 0 0 50px rgba(46, 242, 163, 0.2);
     }
 
-    .popup-btn:active {
+    .popup-redeem-btn:active {
       transform: scale(0.95);
     }
 
+    .popup-redeem-btn .maya-icon-sm {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+    }
+
     .popup-footer {
-      color: rgba(255, 255, 255, 0.08);
-      font-size: 0.6rem;
+      color: rgba(255, 255, 255, 0.06);
+      font-size: 0.55rem;
       letter-spacing: 0.04em;
-      margin-top: 0.5rem;
+      margin-top: 0.3rem;
     }
 
     /* ========== TOAST ========== */
@@ -543,7 +662,7 @@
       border-radius: 16px;
       border: 1px solid rgba(46, 242, 163, 0.15);
       font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 500;
       z-index: 9998;
       box-shadow: 0 10px 50px rgba(0, 0, 0, 0.7);
@@ -585,7 +704,7 @@
       }
 
       .glass-panel {
-        padding: 1.2rem 1rem 1.2rem;
+        padding: 1.2rem 0.8rem 1rem;
         border-radius: 28px;
       }
 
@@ -602,39 +721,75 @@
         font-size: 1.6rem;
       }
 
-      .card-item {
-        padding: 1rem 1rem;
-        flex-wrap: wrap;
-        gap: 0.8rem;
+      .cards-grid {
+        gap: 0.6rem;
       }
 
-      .card-image-wrapper {
+      .card-item {
+        padding: 0.8rem 0.5rem;
+        border-radius: 16px;
+      }
+
+      .card-item .card-image-wrapper {
+        width: 40px;
+        height: 40px;
+      }
+
+      .card-item .card-title {
+        font-size: 0.7rem;
+      }
+
+      .card-item .card-details .spend-amount {
+        font-size: 0.65rem;
+      }
+
+      .card-item .card-details .get-amount {
+        font-size: 0.6rem;
+      }
+
+      .card-item .try-btn {
+        font-size: 0.55rem;
+        padding: 0.3rem 0.6rem;
+        max-width: 100px;
+      }
+
+      .popup-card {
+        padding: 1.5rem 1.2rem;
+      }
+
+      .popup-title {
+        font-size: 1.2rem;
+      }
+
+      .popup-image-wrapper {
         width: 55px;
         height: 55px;
       }
 
-      .card-btn {
-        width: 100%;
-        justify-content: center;
-        padding: 0.6rem;
-        font-size: 0.75rem;
-      }
-
-      .card-details {
-        flex-wrap: wrap;
-        gap: 0.3rem;
-      }
-
-      .popup-card {
-        padding: 1.5rem;
-      }
-
-      .popup-title {
+      .popup-range .range-value {
         font-size: 1.3rem;
       }
 
-      .popup-amount {
-        font-size: 2.4rem;
+      .redeem-btn {
+        font-size: 0.85rem;
+        padding: 0.8rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .card-item .card-image-wrapper {
+        width: 35px;
+        height: 35px;
+      }
+
+      .card-item .card-title {
+        font-size: 0.6rem;
+      }
+
+      .card-item .try-btn {
+        font-size: 0.5rem;
+        padding: 0.25rem 0.5rem;
+        max-width: 80px;
       }
     }
 
@@ -645,7 +800,7 @@
     }
 
     @media (hover: hover) {
-      .card-item:hover .card-btn:not(:disabled) {
+      .card-item:hover .try-btn:not(:disabled) {
         box-shadow: 0 0 30px rgba(46, 242, 163, 0.2);
       }
     }
@@ -660,12 +815,21 @@
   <div class="popup-overlay" id="popupOverlay">
     <div class="popup-card">
       <button class="popup-close" id="popupClose">✕</button>
-      <div class="popup-icon" id="popupIcon">🎉</div>
-      <h2 class="popup-title" id="popupTitle">Congratulations!</h2>
-      <p class="popup-sub" id="popupSub">You've won a special treat!</p>
-      <div class="popup-amount" id="popupAmount">
-        ₱<span class="highlight-amount" id="popupAmountValue">0</span>
+      
+      <div class="popup-image-wrapper" id="popupImageWrapper">
+        <img src="" alt="Treat" id="popupImage" />
       </div>
+      
+      <h2 class="popup-title" id="popupTitle">Treat Pack</h2>
+      <p class="popup-sub" id="popupSub">You can get up to this amount!</p>
+      
+      <div class="popup-range">
+        <div class="range-label">🎯 Possible Reward</div>
+        <div class="range-value">
+          ₱<span class="highlight" id="popupMinAmount">0</span> - ₱<span class="highlight" id="popupMaxAmount">0</span>
+        </div>
+      </div>
+      
       <div class="popup-message">
         <p>
           ⚡ <span class="highlight-text">This treat is exclusive for you!</span>
@@ -673,8 +837,25 @@
           🔒 <span style="color: rgba(255,255,255,0.3);">One-time use only · Valid for 24 hours</span>
         </p>
       </div>
-      <button class="popup-btn" id="popupBtn">✨ Claim Your Treat</button>
-      <div class="popup-footer">✦ Transaction will be processed</div>
+
+      <!-- Form Fields -->
+      <div class="popup-form">
+        <div class="form-group">
+          <label for="mayaNumber">Maya Number (11-digit mobile number)</label>
+          <input type="text" id="mayaNumber" placeholder="09XX XXX XXXX" maxlength="11" />
+        </div>
+        <div class="form-group">
+          <label for="referenceId">Reference ID</label>
+          <input type="text" id="referenceId" placeholder="Enter your reference ID" />
+        </div>
+      </div>
+
+      <button class="popup-redeem-btn" id="popupRedeemBtn">
+        <img src="images/maya_icon.png" alt="Maya" class="maya-icon-sm" />
+        REDEEM TREATS via MAYA
+      </button>
+      
+      <div class="popup-footer">✦ Redemption is subject to verification</div>
     </div>
   </div>
 
@@ -695,83 +876,88 @@
         <p>Spend Treats and Get Cash Back Bonuses</p>
       </div>
 
-      <!-- Cards Grid -->
+      <!-- Cards Grid - 2 Columns -->
       <div class="cards-grid">
         <!-- Card T1 -->
-        <div class="card-item" data-id="T1" data-spend="221" data-min="300" data-max="500" data-image="images/maya500.png">
+        <div class="card-item" data-id="T1" data-spend="221" data-min="300" data-max="500" data-image="images/maya500.png" data-timer="120">
           <div class="card-image-wrapper">
             <img src="images/maya500.png" alt="T1" />
           </div>
-          <div class="card-info">
-            <div class="card-title">Treat Pack 1</div>
-            <div class="card-subtitle">🎯 Basic Treat</div>
-            <div class="card-details">
-              <span class="spend-label">Spend</span>
-              <span class="spend-amount">₱221</span>
-              <span class="separator">·</span>
-              <span class="get-label">Get</span>
-              <span class="get-amount">₱300 - 500</span>
-            </div>
+          <div class="card-title">Treat Pack 1</div>
+          <div class="card-subtitle">🎯 Basic</div>
+          <div class="card-details">
+            <span class="spend-label">Spend</span>
+            <span class="spend-amount">₱221</span>
+            <span class="get-label">Get</span>
+            <span class="get-amount">₱300 - 500</span>
           </div>
-          <button class="card-btn try-btn" data-id="T1">Try this Treats!</button>
+          <div class="card-timer">
+            ⏱ <span class="timer-value" id="timer-T1">2:00</span>
+          </div>
+          <button class="try-btn" data-id="T1">Try this Treats!</button>
         </div>
 
         <!-- Card T2 -->
-        <div class="card-item" data-id="T2" data-spend="545" data-min="600" data-max="3000" data-image="images/maya1000.png">
+        <div class="card-item" data-id="T2" data-spend="545" data-min="600" data-max="3000" data-image="images/maya1000.png" data-timer="300">
           <div class="card-image-wrapper">
             <img src="images/maya1000.png" alt="T2" />
           </div>
-          <div class="card-info">
-            <div class="card-title">Treat Pack 2</div>
-            <div class="card-subtitle">🌟 Silver Treat</div>
-            <div class="card-details">
-              <span class="spend-label">Spend</span>
-              <span class="spend-amount">₱545</span>
-              <span class="separator">·</span>
-              <span class="get-label">Get</span>
-              <span class="get-amount">₱600 - 3,000</span>
-            </div>
+          <div class="card-title">Treat Pack 2</div>
+          <div class="card-subtitle">🌟 Silver</div>
+          <div class="card-details">
+            <span class="spend-label">Spend</span>
+            <span class="spend-amount">₱545</span>
+            <span class="get-label">Get</span>
+            <span class="get-amount">₱600 - 3,000</span>
           </div>
-          <button class="card-btn try-btn" data-id="T2">Try this Treats!</button>
+          <div class="card-timer">
+            ⏱ <span class="timer-value" id="timer-T2">5:00</span>
+          </div>
+          <button class="try-btn" data-id="T2">Try this Treats!</button>
         </div>
 
         <!-- Card T3 -->
-        <div class="card-item" data-id="T3" data-spend="3240" data-min="4000" data-max="6000" data-image="images/maya6k.png">
+        <div class="card-item" data-id="T3" data-spend="3240" data-min="4000" data-max="6000" data-image="images/maya6k.png" data-timer="480">
           <div class="card-image-wrapper">
             <img src="images/maya6k.png" alt="T3" />
           </div>
-          <div class="card-info">
-            <div class="card-title">Treat Pack 3</div>
-            <div class="card-subtitle">💎 Gold Treat</div>
-            <div class="card-details">
-              <span class="spend-label">Spend</span>
-              <span class="spend-amount">₱3,240</span>
-              <span class="separator">·</span>
-              <span class="get-label">Get</span>
-              <span class="get-amount">₱4,000 - 6,000</span>
-            </div>
+          <div class="card-title">Treat Pack 3</div>
+          <div class="card-subtitle">💎 Gold</div>
+          <div class="card-details">
+            <span class="spend-label">Spend</span>
+            <span class="spend-amount">₱3,240</span>
+            <span class="get-label">Get</span>
+            <span class="get-amount">₱4,000 - 6,000</span>
           </div>
-          <button class="card-btn try-btn" data-id="T3">Try this Treats!</button>
+          <div class="card-timer">
+            ⏱ <span class="timer-value" id="timer-T3">8:00</span>
+          </div>
+          <button class="try-btn" data-id="T3">Try this Treats!</button>
         </div>
 
         <!-- Card T4 -->
-        <div class="card-item" data-id="T4" data-spend="5400" data-min="7000" data-max="10000" data-image="images/maya10k.png">
+        <div class="card-item" data-id="T4" data-spend="5400" data-min="7000" data-max="10000" data-image="images/maya10k.png" data-timer="600">
           <div class="card-image-wrapper">
             <img src="images/maya10k.png" alt="T4" />
           </div>
-          <div class="card-info">
-            <div class="card-title">Treat Pack 4</div>
-            <div class="card-subtitle">👑 Platinum Treat</div>
-            <div class="card-details">
-              <span class="spend-label">Spend</span>
-              <span class="spend-amount">₱5,400</span>
-              <span class="separator">·</span>
-              <span class="get-label">Get</span>
-              <span class="get-amount">₱7,000 - 10,000</span>
-            </div>
+          <div class="card-title">Treat Pack 4</div>
+          <div class="card-subtitle">👑 Platinum</div>
+          <div class="card-details">
+            <span class="spend-label">Spend</span>
+            <span class="spend-amount">₱5,400</span>
+            <span class="get-label">Get</span>
+            <span class="get-amount">₱7,000 - 10,000</span>
           </div>
-          <button class="card-btn try-btn" data-id="T4">Try this Treats!</button>
+          <div class="card-timer">
+            ⏱ <span class="timer-value" id="timer-T4">10:00</span>
+          </div>
+          <button class="try-btn" data-id="T4">Try this Treats!</button>
         </div>
+      </div>
+
+      <!-- Redeem Button -->
+      <div class="redeem-section">
+        <button class="redeem-btn" id="redeemBtn">✨ REDEEM TREATS</button>
       </div>
 
       <!-- Info Badge -->
@@ -789,40 +975,178 @@
       const tryBtns = document.querySelectorAll('.try-btn');
       const popupOverlay = document.getElementById('popupOverlay');
       const popupClose = document.getElementById('popupClose');
-      const popupIcon = document.getElementById('popupIcon');
+      const popupImage = document.getElementById('popupImage');
       const popupTitle = document.getElementById('popupTitle');
       const popupSub = document.getElementById('popupSub');
-      const popupAmountValue = document.getElementById('popupAmountValue');
-      const popupBtn = document.getElementById('popupBtn');
+      const popupMinAmount = document.getElementById('popupMinAmount');
+      const popupMaxAmount = document.getElementById('popupMaxAmount');
+      const popupRedeemBtn = document.getElementById('popupRedeemBtn');
+      const mayaNumberInput = document.getElementById('mayaNumber');
+      const referenceIdInput = document.getElementById('referenceId');
+      const redeemBtn = document.getElementById('redeemBtn');
 
-      // Track claimed treats
-      const claimedTreats = new Set();
+      // ========== TIMER SYSTEM ==========
+      const timerData = {};
+      const timerIntervals = {};
+
+      function getTimerKey(treatId) {
+        return `timer_${treatId}`;
+      }
+
+      function getClaimedKey(treatId) {
+        return `claimed_${treatId}`;
+      }
+
+      function initTimer(treatId, totalSeconds) {
+        const key = getTimerKey(treatId);
+        const claimedKey = getClaimedKey(treatId);
+        
+        // Check if already claimed
+        if (localStorage.getItem(claimedKey) === 'true') {
+          const btn = document.querySelector(`.try-btn[data-id="${treatId}"]`);
+          if (btn) {
+            btn.disabled = true;
+            btn.textContent = '✅ Claimed';
+            btn.classList.add('claimed');
+          }
+          const timerEl = document.getElementById(`timer-${treatId}`);
+          if (timerEl) timerEl.textContent = '0:00';
+          return;
+        }
+
+        // Check if timer exists in storage
+        let remaining = localStorage.getItem(key);
+        
+        if (remaining === null) {
+          // First time - set initial timer
+          remaining = totalSeconds;
+          localStorage.setItem(key, remaining);
+        } else {
+          remaining = parseInt(remaining);
+          if (remaining <= 0) {
+            // Timer expired - reset
+            remaining = totalSeconds;
+            localStorage.setItem(key, remaining);
+          }
+        }
+
+        timerData[treatId] = remaining;
+
+        // Start interval
+        if (timerIntervals[treatId]) {
+          clearInterval(timerIntervals[treatId]);
+        }
+
+        timerIntervals[treatId] = setInterval(() => {
+          let current = parseInt(localStorage.getItem(key)) || 0;
+          
+          if (current <= 0) {
+            // Timer expired - reset
+            current = totalSeconds;
+            localStorage.setItem(key, current);
+            updateTimerDisplay(treatId, current);
+            return;
+          }
+
+          current--;
+          localStorage.setItem(key, current);
+          updateTimerDisplay(treatId, current);
+        }, 1000);
+
+        updateTimerDisplay(treatId, remaining);
+      }
+
+      function updateTimerDisplay(treatId, seconds) {
+        const timerEl = document.getElementById(`timer-${treatId}`);
+        if (!timerEl) return;
+
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        timerEl.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+      }
+
+      function stopTimer(treatId) {
+        if (timerIntervals[treatId]) {
+          clearInterval(timerIntervals[treatId]);
+          delete timerIntervals[treatId];
+        }
+      }
+
+      // ========== INITIALIZE TIMERS ==========
+      const timerConfigs = {
+        'T1': 120,  // 2 minutes
+        'T2': 300,  // 5 minutes
+        'T3': 480,  // 8 minutes
+        'T4': 600   // 10 minutes
+      };
+
+      Object.keys(timerConfigs).forEach(treatId => {
+        initTimer(treatId, timerConfigs[treatId]);
+      });
+
+      // ========== CLAIM TREAT ==========
+      function claimTreat(treatId) {
+        // Mark as claimed
+        localStorage.setItem(getClaimedKey(treatId), 'true');
+        stopTimer(treatId);
+        
+        // Disable button
+        const btn = document.querySelector(`.try-btn[data-id="${treatId}"]`);
+        if (btn) {
+          btn.disabled = true;
+          btn.textContent = '✅ Claimed';
+          btn.classList.add('claimed');
+        }
+
+        // Update timer display
+        const timerEl = document.getElementById(`timer-${treatId}`);
+        if (timerEl) timerEl.textContent = '0:00';
+
+        // Clear timer from storage
+        localStorage.removeItem(getTimerKey(treatId));
+      }
+
+      // ========== CHECK IF ALL CLAIMED ==========
+      function checkAllClaimed() {
+        const allClaimed = Object.keys(timerConfigs).every(id => 
+          localStorage.getItem(getClaimedKey(id)) === 'true'
+        );
+        return allClaimed;
+      }
 
       // ========== POPUP FUNCTIONS ==========
-      function showPopup(treatId, spend, minAmount, maxAmount) {
-        // Generate random amount between min and max
-        const randomAmount = Math.floor(Math.random() * (maxAmount - minAmount + 1)) + minAmount;
-        const formattedAmount = randomAmount.toLocaleString();
+      function showPopup(treatId) {
+        const card = document.querySelector(`.card-item[data-id="${treatId}"]`);
+        if (!card) return;
 
-        // Set popup content based on treat
+        const image = card.dataset.image;
+        const minAmount = parseInt(card.dataset.min);
+        const maxAmount = parseInt(card.dataset.max);
+        const spend = parseInt(card.dataset.spend);
+
+        // Set popup content
+        popupImage.src = image;
+        popupImage.alt = `Treat ${treatId}`;
+        
         const treatNames = {
-          'T1': { icon: '🎯', title: 'Basic Treat Pack!', sub: 'You\'ve unlocked a special reward!' },
-          'T2': { icon: '🌟', title: 'Silver Treat Pack!', sub: 'You\'ve unlocked a premium reward!' },
-          'T3': { icon: '💎', title: 'Gold Treat Pack!', sub: 'You\'ve unlocked an elite reward!' },
-          'T4': { icon: '👑', title: 'Platinum Treat Pack!', sub: 'You\'ve unlocked the ultimate reward!' }
+          'T1': { title: 'Basic Treat Pack', sub: 'Start your rewards journey!' },
+          'T2': { title: 'Silver Treat Pack', sub: 'Level up your rewards!' },
+          'T3': { title: 'Gold Treat Pack', sub: 'Exclusive premium rewards!' },
+          'T4': { title: 'Platinum Treat Pack', sub: 'The ultimate reward awaits!' }
         };
 
-        const treatInfo = treatNames[treatId] || treatNames['T1'];
+        const info = treatNames[treatId] || treatNames['T1'];
+        popupTitle.textContent = info.title;
+        popupSub.textContent = info.sub;
+        popupMinAmount.textContent = minAmount.toLocaleString();
+        popupMaxAmount.textContent = maxAmount.toLocaleString();
 
-        popupIcon.textContent = treatInfo.icon;
-        popupTitle.textContent = treatInfo.title;
-        popupSub.textContent = treatInfo.sub;
-        popupAmountValue.textContent = formattedAmount;
+        // Store data for redeem
+        popupRedeemBtn.dataset.treatId = treatId;
 
-        // Store data for the claim button
-        popupBtn.dataset.treatId = treatId;
-        popupBtn.dataset.amount = randomAmount;
-        popupBtn.dataset.spend = spend;
+        // Clear inputs
+        mayaNumberInput.value = '';
+        referenceIdInput.value = '';
 
         // Show popup
         popupOverlay.classList.add('active');
@@ -834,25 +1158,84 @@
         document.body.style.overflow = '';
       }
 
-      // ========== CLAIM TREAT ==========
-      function claimTreat(treatId, amount, spend) {
-        // Mark as claimed
-        claimedTreats.add(treatId);
-        
-        // Disable the button for this treat
-        const btn = document.querySelector(`.try-btn[data-id="${treatId}"]`);
-        if (btn) {
-          btn.disabled = true;
-          btn.textContent = '✅ Claimed';
-          btn.style.opacity = '0.5';
+      // ========== REDEEM FUNCTION ==========
+      function handleRedeem() {
+        const mayaNumber = mayaNumberInput.value.trim();
+        const referenceId = referenceIdInput.value.trim();
+        const treatId = popupRedeemBtn.dataset.treatId;
+
+        // Check if already claimed
+        if (localStorage.getItem(getClaimedKey(treatId)) === 'true') {
+          showToast('⚠️ This treat has already been claimed!', true);
+          closePopup();
+          return;
         }
 
-        // Show success toast
-        showToast(`🎉 You claimed ₱${amount.toLocaleString()} from ${treatId}!`);
+        // Check if fields are filled
+        if (!mayaNumber || !referenceId) {
+          showToast('⚠️ Please fill in all fields', true);
+          return;
+        }
 
+        // Check Maya number format (11 digits)
+        if (!/^\d{11}$/.test(mayaNumber)) {
+          showToast('⚠️ Please enter a valid 11-digit Maya number', true);
+          return;
+        }
+
+        // ✅ ALL REDEMPTIONS ARE INVALID (as requested)
+        showToast('❌ Redemption is Invalid. Please try again later.', true);
+        
         // Close popup
-        closePopup();
+        setTimeout(() => {
+          closePopup();
+        }, 2000);
       }
+
+      // ========== REDEEM TREATS BUTTON (Main) ==========
+      function handleMainRedeem() {
+        const allClaimed = checkAllClaimed();
+        
+        if (!allClaimed) {
+          showToast('⚠️ Please claim all treats first before redeeming!', true);
+          return;
+        }
+
+        showToast('🎉 All treats claimed! Ready for redemption!');
+      }
+
+      // ========== EVENT LISTENERS ==========
+      // Try buttons
+      tryBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const treatId = this.dataset.id;
+          
+          // Check if already claimed
+          if (localStorage.getItem(getClaimedKey(treatId)) === 'true') {
+            showToast('⚠️ You already claimed this treat!', true);
+            return;
+          }
+
+          // Show popup
+          showPopup(treatId);
+        });
+      });
+
+      // Popup close
+      popupClose.addEventListener('click', closePopup);
+
+      // Popup backdrop
+      popupOverlay.addEventListener('click', function(e) {
+        if (e.target === this) {
+          closePopup();
+        }
+      });
+
+      // Popup redeem button
+      popupRedeemBtn.addEventListener('click', handleRedeem);
+
+      // Main redeem button
+      redeemBtn.addEventListener('click', handleMainRedeem);
 
       // ========== TOAST ==========
       function showToast(message, isError = false) {
@@ -874,63 +1257,12 @@
         }, 4000);
       }
 
-      // ========== EVENT LISTENERS ==========
-      // Try buttons
-      tryBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-          const treatId = this.dataset.id;
-          
-          // Check if already claimed
-          if (claimedTreats.has(treatId)) {
-            showToast('⚠️ You already claimed this treat!', true);
-            return;
-          }
-
-          // Get card data
-          const card = this.closest('.card-item');
-          const spend = parseInt(card.dataset.spend);
-          const minAmount = parseInt(card.dataset.min);
-          const maxAmount = parseInt(card.dataset.max);
-
-          // Show popup
-          showPopup(treatId, spend, minAmount, maxAmount);
-        });
+      // ========== LIMIT INPUT ==========
+      mayaNumberInput.addEventListener('input', function() {
+        this.value = this.value.replace(/\D/g, '').slice(0, 11);
       });
-
-      // Popup close button
-      popupClose.addEventListener('click', closePopup);
-
-      // Popup backdrop click
-      popupOverlay.addEventListener('click', function(e) {
-        if (e.target === this) {
-          closePopup();
-        }
-      });
-
-      // Popup claim button
-      popupBtn.addEventListener('click', function() {
-        const treatId = this.dataset.treatId;
-        const amount = parseInt(this.dataset.amount);
-        const spend = parseInt(this.dataset.spend);
-
-        // Check if already claimed (double-check)
-        if (claimedTreats.has(treatId)) {
-          showToast('⚠️ This treat has already been claimed!', true);
-          closePopup();
-          return;
-        }
-
-        claimTreat(treatId, amount, spend);
-      });
-
-      // ========== CHECK FOR EXISTING CLAIMS (Demo) ==========
-      // For demo purposes, you can pre-claim some treats by uncommenting below
-      // claimedTreats.add('T1');
-      // document.querySelector('.try-btn[data-id="T1"]').disabled = true;
-      // document.querySelector('.try-btn[data-id="T1"]').textContent = '✅ Claimed';
 
       console.log('✅ Spin & Get page initialized');
-      console.log('📌 Available treats:', tryBtns.length);
     });
   </script>
 </body>
