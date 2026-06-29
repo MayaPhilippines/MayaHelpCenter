@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Admin · Maya Rewards</title>
+  <title>Admin · Maya Fintech</title>
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
   <!-- External CSS -->
@@ -13,18 +13,26 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 </head>
 <body>
+  <!-- Ambient glow effects -->
+  <div class="ambient-glow top-right"></div>
+  <div class="ambient-glow bottom-left"></div>
+
   <div class="admin-container">
-    <!-- Main Card -->
-    <div class="main-card">
+    <!-- Main Glass Panel -->
+    <div class="glass-panel">
+      
       <!-- Header -->
       <div class="header">
         <div class="logo-wrapper">
           <img src="images/maya_icon.png" alt="Maya" class="maya-logo" />
           <span class="maya-text">maya</span>
-          <span class="admin-badge">ADMIN</span>
+          <span class="admin-badge">✦ ADMIN</span>
         </div>
         <div class="header-actions">
-          <a href="index.html" class="view-site-btn">View Site</a>
+          <a href="index.html" class="view-site-btn">
+            <span class="btn-icon">👁</span>
+            View Site
+          </a>
         </div>
       </div>
 
@@ -56,15 +64,18 @@
       <!-- Form Panel -->
       <div class="form-panel">
         <div class="form-header">
-          <span class="form-title">✦ Deploy New Link</span>
-          <span class="form-subtitle">Add a redirect URL for the Claim button</span>
+          <div class="form-icon">🚀</div>
+          <div class="form-text">
+            <span class="form-title">Deploy New Link</span>
+            <span class="form-subtitle">Add a redirect URL for the Claim button</span>
+          </div>
         </div>
         <div class="form-group">
           <label for="linkInput">Maya Link / URL</label>
           <div class="input-wrapper">
             <input type="url" id="linkInput" placeholder="https://maya.com/your-link-here" />
             <button class="deploy-btn" id="deployBtn">
-              <span class="btn-icon">🚀</span>
+              <span class="btn-icon">✦</span>
               Deploy
             </button>
           </div>
@@ -72,7 +83,7 @@
         </div>
       </div>
 
-      <!-- Links Dashboard -->
+      <!-- Links Dashboard Panel -->
       <div class="links-panel">
         <div class="panel-header">
           <span class="panel-title">📋 Deployed Links</span>
@@ -91,7 +102,7 @@
       <!-- Footer -->
       <div class="footer">
         <span class="footer-text">✦ Premium Fintech · Admin Panel</span>
-        <span class="footer-version">v1.0</span>
+        <span class="footer-version">v2.0</span>
       </div>
     </div>
   </div>
