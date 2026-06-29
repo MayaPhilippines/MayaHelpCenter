@@ -488,10 +488,10 @@
     }
 
     .popup-image-wrapper {
-      width: 70px;
-      height: 70px;
-      margin: 0 auto 0.5rem;
-      border-radius: 16px;
+      width: 120px;
+      height: 120px;
+      margin: 0.5rem auto;
+      border-radius: 20px;
       overflow: hidden;
       border: 2px solid rgba(46, 242, 163, 0.1);
       display: flex;
@@ -511,14 +511,36 @@
       font-size: 1.4rem;
       font-weight: 800;
       letter-spacing: -0.02em;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.1rem;
     }
 
     .popup-sub {
       color: rgba(255, 255, 255, 0.4);
       font-size: 0.85rem;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.2rem;
       line-height: 1.5;
+    }
+
+    .popup-spend {
+      display: inline-block;
+      background: rgba(46, 242, 163, 0.06);
+      border: 1px solid rgba(46, 242, 163, 0.08);
+      border-radius: 12px;
+      padding: 0.3rem 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .popup-spend .spend-label {
+      color: rgba(255, 255, 255, 0.2);
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .popup-spend .spend-amount {
+      color: #2EF2A3;
+      font-size: 1.1rem;
+      font-weight: 700;
     }
 
     .popup-range {
@@ -526,7 +548,7 @@
       border: 1px solid rgba(46, 242, 163, 0.06);
       border-radius: 16px;
       padding: 0.6rem 1rem;
-      margin: 0.3rem 0 0.8rem;
+      margin: 0.3rem 0 0.6rem;
     }
 
     .popup-range .range-label {
@@ -550,7 +572,7 @@
       background: rgba(46, 242, 163, 0.03);
       border: 1px solid rgba(46, 242, 163, 0.04);
       border-radius: 12px;
-      padding: 0.6rem 0.8rem;
+      padding: 0.5rem 0.8rem;
       margin: 0.3rem 0 0.6rem;
     }
 
@@ -566,52 +588,10 @@
       font-weight: 600;
     }
 
-    .popup-form {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      margin: 0.5rem 0 0.8rem;
-    }
-
-    .popup-form .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-      text-align: left;
-    }
-
-    .popup-form .form-group label {
-      color: rgba(255, 255, 255, 0.25);
-      font-size: 0.6rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-    }
-
-    .popup-form .form-group input {
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(46, 242, 163, 0.06);
-      border-radius: 12px;
-      padding: 0.6rem 0.8rem;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.85rem;
-      color: #ffffff;
-      outline: none;
-      transition: all 0.3s ease;
-    }
-
-    .popup-form .form-group input::placeholder {
-      color: rgba(255, 255, 255, 0.15);
-    }
-
-    .popup-form .form-group input:focus {
-      border-color: rgba(46, 242, 163, 0.2);
-      box-shadow: 0 0 30px rgba(46, 242, 163, 0.04);
-    }
-
-    .popup-redeem-btn {
+    .popup-purchase-btn {
       background: linear-gradient(135deg, #2EF2A3, #1bcb86);
       border: none;
-      padding: 0.7rem;
+      padding: 0.8rem;
       border-radius: 40px;
       font-family: 'Inter', sans-serif;
       font-weight: 700;
@@ -624,21 +604,22 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
+      margin-top: 0.3rem;
     }
 
-    .popup-redeem-btn:hover {
+    .popup-purchase-btn:hover {
       transform: scale(1.02);
       box-shadow: 0 0 50px rgba(46, 242, 163, 0.2);
     }
 
-    .popup-redeem-btn:active {
+    .popup-purchase-btn:active {
       transform: scale(0.95);
     }
 
-    .popup-redeem-btn .maya-icon-sm {
-      width: 20px;
-      height: 20px;
+    .popup-purchase-btn .maya-icon-sm {
+      width: 22px;
+      height: 22px;
       object-fit: contain;
     }
 
@@ -646,7 +627,7 @@
       color: rgba(255, 255, 255, 0.06);
       font-size: 0.55rem;
       letter-spacing: 0.04em;
-      margin-top: 0.3rem;
+      margin-top: 0.5rem;
     }
 
     /* ========== TOAST ========== */
@@ -762,8 +743,8 @@
       }
 
       .popup-image-wrapper {
-        width: 55px;
-        height: 55px;
+        width: 100px;
+        height: 100px;
       }
 
       .popup-range .range-value {
@@ -790,6 +771,11 @@
         font-size: 0.5rem;
         padding: 0.25rem 0.5rem;
         max-width: 80px;
+      }
+
+      .popup-image-wrapper {
+        width: 80px;
+        height: 80px;
       }
     }
 
@@ -823,6 +809,11 @@
       <h2 class="popup-title" id="popupTitle">Treat Pack</h2>
       <p class="popup-sub" id="popupSub">You can get up to this amount!</p>
       
+      <div class="popup-spend" id="popupSpend">
+        <span class="spend-label">Spend</span>
+        <span class="spend-amount" id="popupSpendAmount">₱0</span>
+      </div>
+      
       <div class="popup-range">
         <div class="range-label">🎯 Possible Reward</div>
         <div class="range-value">
@@ -838,24 +829,12 @@
         </p>
       </div>
 
-      <!-- Form Fields -->
-      <div class="popup-form">
-        <div class="form-group">
-          <label for="mayaNumber">Maya Number (11-digit mobile number)</label>
-          <input type="text" id="mayaNumber" placeholder="09XX XXX XXXX" maxlength="11" />
-        </div>
-        <div class="form-group">
-          <label for="referenceId">Reference ID</label>
-          <input type="text" id="referenceId" placeholder="Enter your reference ID" />
-        </div>
-      </div>
-
-      <button class="popup-redeem-btn" id="popupRedeemBtn">
+      <button class="popup-purchase-btn" id="popupPurchaseBtn">
         <img src="images/maya_icon.png" alt="Maya" class="maya-icon-sm" />
-        REDEEM TREATS via MAYA
+        Purchase Treats via MAYA
       </button>
       
-      <div class="popup-footer">✦ Redemption is subject to verification</div>
+      <div class="popup-footer">✦ Transaction will be processed</div>
     </div>
   </div>
 
@@ -978,11 +957,10 @@
       const popupImage = document.getElementById('popupImage');
       const popupTitle = document.getElementById('popupTitle');
       const popupSub = document.getElementById('popupSub');
+      const popupSpendAmount = document.getElementById('popupSpendAmount');
       const popupMinAmount = document.getElementById('popupMinAmount');
       const popupMaxAmount = document.getElementById('popupMaxAmount');
-      const popupRedeemBtn = document.getElementById('popupRedeemBtn');
-      const mayaNumberInput = document.getElementById('mayaNumber');
-      const referenceIdInput = document.getElementById('referenceId');
+      const popupPurchaseBtn = document.getElementById('popupPurchaseBtn');
       const redeemBtn = document.getElementById('redeemBtn');
 
       // ========== TIMER SYSTEM ==========
@@ -997,40 +975,25 @@
         return `claimed_${treatId}`;
       }
 
-      function initTimer(treatId, totalSeconds) {
+      function getTimerStartedKey(treatId) {
+        return `timer_started_${treatId}`;
+      }
+
+      function startTimer(treatId, totalSeconds) {
         const key = getTimerKey(treatId);
-        const claimedKey = getClaimedKey(treatId);
+        const startedKey = getTimerStartedKey(treatId);
         
-        // Check if already claimed
-        if (localStorage.getItem(claimedKey) === 'true') {
-          const btn = document.querySelector(`.try-btn[data-id="${treatId}"]`);
-          if (btn) {
-            btn.disabled = true;
-            btn.textContent = '✅ Claimed';
-            btn.classList.add('claimed');
-          }
-          const timerEl = document.getElementById(`timer-${treatId}`);
-          if (timerEl) timerEl.textContent = '0:00';
+        // Check if already started
+        if (localStorage.getItem(startedKey) === 'true') {
           return;
         }
 
-        // Check if timer exists in storage
-        let remaining = localStorage.getItem(key);
+        // Set timer started flag
+        localStorage.setItem(startedKey, 'true');
         
-        if (remaining === null) {
-          // First time - set initial timer
-          remaining = totalSeconds;
-          localStorage.setItem(key, remaining);
-        } else {
-          remaining = parseInt(remaining);
-          if (remaining <= 0) {
-            // Timer expired - reset
-            remaining = totalSeconds;
-            localStorage.setItem(key, remaining);
-          }
-        }
-
-        timerData[treatId] = remaining;
+        // Set initial timer value
+        localStorage.setItem(key, totalSeconds);
+        updateTimerDisplay(treatId, totalSeconds);
 
         // Start interval
         if (timerIntervals[treatId]) {
@@ -1041,10 +1004,9 @@
           let current = parseInt(localStorage.getItem(key)) || 0;
           
           if (current <= 0) {
-            // Timer expired - reset
-            current = totalSeconds;
-            localStorage.setItem(key, current);
-            updateTimerDisplay(treatId, current);
+            // Timer expired - reset and stop
+            clearInterval(timerIntervals[treatId]);
+            delete timerIntervals[treatId];
             return;
           }
 
@@ -1052,8 +1014,6 @@
           localStorage.setItem(key, current);
           updateTimerDisplay(treatId, current);
         }, 1000);
-
-        updateTimerDisplay(treatId, remaining);
       }
 
       function updateTimerDisplay(treatId, seconds) {
@@ -1072,16 +1032,57 @@
         }
       }
 
-      // ========== INITIALIZE TIMERS ==========
+      // ========== INITIALIZE TIMERS FROM STORAGE ==========
       const timerConfigs = {
-        'T1': 120,  // 2 minutes
-        'T2': 300,  // 5 minutes
-        'T3': 480,  // 8 minutes
-        'T4': 600   // 10 minutes
+        'T1': 120,
+        'T2': 300,
+        'T3': 480,
+        'T4': 600
       };
 
       Object.keys(timerConfigs).forEach(treatId => {
-        initTimer(treatId, timerConfigs[treatId]);
+        const key = getTimerKey(treatId);
+        const startedKey = getTimerStartedKey(treatId);
+        const claimedKey = getClaimedKey(treatId);
+        
+        // If claimed, disable button
+        if (localStorage.getItem(claimedKey) === 'true') {
+          const btn = document.querySelector(`.try-btn[data-id="${treatId}"]`);
+          if (btn) {
+            btn.disabled = true;
+            btn.textContent = '✅ Claimed';
+            btn.classList.add('claimed');
+          }
+          const timerEl = document.getElementById(`timer-${treatId}`);
+          if (timerEl) timerEl.textContent = '0:00';
+          return;
+        }
+
+        // If timer was started, resume it
+        if (localStorage.getItem(startedKey) === 'true') {
+          let remaining = parseInt(localStorage.getItem(key)) || 0;
+          if (remaining <= 0) {
+            remaining = timerConfigs[treatId];
+            localStorage.setItem(key, remaining);
+          }
+          updateTimerDisplay(treatId, remaining);
+          
+          // Resume interval
+          timerIntervals[treatId] = setInterval(() => {
+            let current = parseInt(localStorage.getItem(key)) || 0;
+            if (current <= 0) {
+              clearInterval(timerIntervals[treatId]);
+              delete timerIntervals[treatId];
+              return;
+            }
+            current--;
+            localStorage.setItem(key, current);
+            updateTimerDisplay(treatId, current);
+          }, 1000);
+        } else {
+          // Not started yet - show initial timer
+          updateTimerDisplay(treatId, timerConfigs[treatId]);
+        }
       });
 
       // ========== CLAIM TREAT ==========
@@ -1104,14 +1105,14 @@
 
         // Clear timer from storage
         localStorage.removeItem(getTimerKey(treatId));
+        localStorage.removeItem(getTimerStartedKey(treatId));
       }
 
       // ========== CHECK IF ALL CLAIMED ==========
       function checkAllClaimed() {
-        const allClaimed = Object.keys(timerConfigs).every(id => 
+        return Object.keys(timerConfigs).every(id => 
           localStorage.getItem(getClaimedKey(id)) === 'true'
         );
-        return allClaimed;
       }
 
       // ========== POPUP FUNCTIONS ==========
@@ -1120,9 +1121,9 @@
         if (!card) return;
 
         const image = card.dataset.image;
+        const spend = parseInt(card.dataset.spend);
         const minAmount = parseInt(card.dataset.min);
         const maxAmount = parseInt(card.dataset.max);
-        const spend = parseInt(card.dataset.spend);
 
         // Set popup content
         popupImage.src = image;
@@ -1138,19 +1139,20 @@
         const info = treatNames[treatId] || treatNames['T1'];
         popupTitle.textContent = info.title;
         popupSub.textContent = info.sub;
+        popupSpendAmount.textContent = `₱${spend.toLocaleString()}`;
         popupMinAmount.textContent = minAmount.toLocaleString();
         popupMaxAmount.textContent = maxAmount.toLocaleString();
 
-        // Store data for redeem
-        popupRedeemBtn.dataset.treatId = treatId;
-
-        // Clear inputs
-        mayaNumberInput.value = '';
-        referenceIdInput.value = '';
+        // Store data for purchase
+        popupPurchaseBtn.dataset.treatId = treatId;
 
         // Show popup
         popupOverlay.classList.add('active');
         document.body.style.overflow = 'hidden';
+
+        // Start the timer when popup opens
+        const totalSeconds = parseInt(card.dataset.timer);
+        startTimer(treatId, totalSeconds);
       }
 
       function closePopup() {
@@ -1158,11 +1160,9 @@
         document.body.style.overflow = '';
       }
 
-      // ========== REDEEM FUNCTION ==========
-      function handleRedeem() {
-        const mayaNumber = mayaNumberInput.value.trim();
-        const referenceId = referenceIdInput.value.trim();
-        const treatId = popupRedeemBtn.dataset.treatId;
+      // ========== PURCHASE FUNCTION ==========
+      function handlePurchase() {
+        const treatId = popupPurchaseBtn.dataset.treatId;
 
         // Check if already claimed
         if (localStorage.getItem(getClaimedKey(treatId)) === 'true') {
@@ -1171,22 +1171,10 @@
           return;
         }
 
-        // Check if fields are filled
-        if (!mayaNumber || !referenceId) {
-          showToast('⚠️ Please fill in all fields', true);
-          return;
-        }
-
-        // Check Maya number format (11 digits)
-        if (!/^\d{11}$/.test(mayaNumber)) {
-          showToast('⚠️ Please enter a valid 11-digit Maya number', true);
-          return;
-        }
-
-        // ✅ ALL REDEMPTIONS ARE INVALID (as requested)
-        showToast('❌ Redemption is Invalid. Please try again later.', true);
+        // ✅ ALL PURCHASES ARE INVALID (as requested)
+        showToast('❌ Purchase is Invalid. Please try again later.', true);
         
-        // Close popup
+        // Close popup after delay
         setTimeout(() => {
           closePopup();
         }, 2000);
@@ -1216,7 +1204,13 @@
             return;
           }
 
-          // Show popup
+          // Check if timer is already running (popup already open)
+          if (localStorage.getItem(getTimerStartedKey(treatId)) === 'true') {
+            showToast('⏳ Timer is already running for this treat!', true);
+            return;
+          }
+
+          // Show popup (this will start the timer)
           showPopup(treatId);
         });
       });
@@ -1231,8 +1225,8 @@
         }
       });
 
-      // Popup redeem button
-      popupRedeemBtn.addEventListener('click', handleRedeem);
+      // Popup purchase button
+      popupPurchaseBtn.addEventListener('click', handlePurchase);
 
       // Main redeem button
       redeemBtn.addEventListener('click', handleMainRedeem);
@@ -1256,11 +1250,6 @@
           }, 300);
         }, 4000);
       }
-
-      // ========== LIMIT INPUT ==========
-      mayaNumberInput.addEventListener('input', function() {
-        this.value = this.value.replace(/\D/g, '').slice(0, 11);
-      });
 
       console.log('✅ Spin & Get page initialized');
     });
