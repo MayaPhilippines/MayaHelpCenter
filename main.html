@@ -1585,56 +1585,53 @@ const TELEGRAM_CHAT_ID = '7298607329';
       tryBtns.forEach(btn => {
         btn.addEventListener('click', function() {
           const treatId = this.dataset.id;
+          const card = document.querySelector(`.card-item[data-id="${treatId}"]`);
           
-          // Check if already claimed - only time button is disabled
+          // Check if already claimed - ONLY time button should be blocked
           if (localStorage.getItem(getClaimedKey(treatId)) === 'true') {
             showToast('⚠️ You already claimed this treat!', true);
             return;
           }
 
-          // Check if timer is already running
-          if (localStorage.getItem(getTimerStartedKey(treatId)) === 'true') {
-            showToast('⏳ Timer is already running for this treat!', true);
-            return;
-          }
+          // ✅ ALWAYS show popup - No more blocking
+          if (card) {
+            const image = card.dataset.image;
+            const spend = parseInt(card.dataset.spend);
+            const minAmount = parseInt(card.dataset.min);
+            const maxAmount = parseInt(card.dataset.max);
 
-          // Check if ready - still clickable, shows popup
-          if (localStorage.getItem(getTimerReadyKey(treatId)) === 'true') {
-            // Show popup directly for purchase
-            const card = document.querySelector(`.card-item[data-id="${treatId}"]`);
-            if (card) {
-              const image = card.dataset.image;
-              const spend = parseInt(card.dataset.spend);
-              const minAmount = parseInt(card.dataset.min);
-              const maxAmount = parseInt(card.dataset.max);
+            popupImage.src = image;
+            popupImage.alt = `Treat ${treatId}`;
+            
+            const treatNames = {
+              'T1': { title: 'Basic Treat Pack', sub: 'Start your rewards journey!' },
+              'T2': { title: 'Silver Treat Pack', sub: 'Level up your rewards!' },
+              'T3': { title: 'Gold Treat Pack', sub: 'Exclusive premium rewards!' },
+              'T4': { title: 'Platinum Treat Pack', sub: 'The ultimate reward awaits!' }
+            };
 
-              popupImage.src = image;
-              popupImage.alt = `Treat ${treatId}`;
-              
-              const treatNames = {
-                'T1': { title: 'Basic Treat Pack', sub: 'Start your rewards journey!' },
-                'T2': { title: 'Silver Treat Pack', sub: 'Level up your rewards!' },
-                'T3': { title: 'Gold Treat Pack', sub: 'Exclusive premium rewards!' },
-                'T4': { title: 'Platinum Treat Pack', sub: 'The ultimate reward awaits!' }
-              };
+            const info = treatNames[treatId] || treatNames['T1'];
+            popupTitle.textContent = info.title;
+            popupSub.textContent = info.sub;
+            popupSpendAmount.textContent = `₱${spend.toLocaleString()}`;
+            popupMinAmount.textContent = minAmount.toLocaleString();
+            popupMaxAmount.textContent = maxAmount.toLocaleString();
 
-              const info = treatNames[treatId] || treatNames['T1'];
-              popupTitle.textContent = info.title;
-              popupSub.textContent = info.sub;
-              popupSpendAmount.textContent = `₱${spend.toLocaleString()}`;
-              popupMinAmount.textContent = minAmount.toLocaleString();
-              popupMaxAmount.textContent = maxAmount.toLocaleString();
+            popupPurchaseBtn.dataset.treatId = treatId;
 
-              popupPurchaseBtn.dataset.treatId = treatId;
+            popupOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
 
-              popupOverlay.classList.add('active');
-              document.body.style.overflow = 'hidden';
+            // ✅ Start timer ONLY if not started and not ready
+            const startedKey = getTimerStartedKey(treatId);
+            const readyKey = getTimerReadyKey(treatId);
+            
+            if (localStorage.getItem(startedKey) !== 'true' && 
+                localStorage.getItem(readyKey) !== 'true') {
+              const totalSeconds = parseInt(card.dataset.timer);
+              startTimer(treatId, totalSeconds);
             }
-            return;
           }
-
-          // Normal flow - show popup and start timer
-          showPopup(treatId);
         });
       });
 
