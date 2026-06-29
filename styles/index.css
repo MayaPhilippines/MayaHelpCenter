@@ -820,4 +820,141 @@ body::after {
 /* ========== RESPONSIVE ========== */
 @media (max-width: 420px) {
   .mobile-container {
-    padding: 
+    padding: 0.3rem;
+  }
+  
+  .main-card {
+    padding: 1.2rem 1rem 1.2rem;
+    border-radius: 28px;
+  }
+  
+  .main-headline {
+    font-size: 2.2rem;
+  }
+  
+  .reward-cards {
+    flex-direction: column;
+  }
+  
+  .reward-card {
+    padding: 0.6rem 0.8rem;
+  }
+  
+  .featured-amount {
+    font-size: 2.2rem;
+  }
+  
+  .maya-text {
+    font-size: 1.1rem;
+  }
+  
+  .maya-logo {
+    width: 28px;
+    height: 28px;
+  }
+
+  .featured-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .claim-btn .btn-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .ad-container {
+    max-width: 320px;
+  }
+
+  .ad-card {
+    padding: 1rem 1rem 1.2rem;
+    border-radius: 20px;
+  }
+
+  .ad-title {
+    font-size: 1.1rem;
+  }
+
+  .ad-image-wrapper {
+    max-height: 100px;
+  }
+
+  .ad-image {
+    max-height: 100px;
+  }
+
+  .popup-container {
+    max-width: 320px;
+  }
+
+  .popup-card {
+    padding: 1.2rem 1rem 1.5rem;
+  }
+
+  .popup-image-wrapper {
+    max-height: 90px;
+  }
+
+  .popup-image {
+    max-height: 90px;
+  }
+
+  .countdown-circle {
+    width: 60px;
+    height: 60px;
+  }
+
+  .countdown-svg {
+    width: 60px;
+    height: 60px;
+  }
+
+  .countdown-number {
+    font-size: 1.5rem;
+  }
+
+  .popup-title {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .main-headline {
+    font-size: 1.8rem;
+  }
+  
+  .maya-text {
+    font-size: 1rem;
+  }
+  
+  .maya-logo {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (min-width: 421px) and (max-width: 768px) {
+  .mobile-container {
+    max-width: 380px;
+  }
+}
+
+/* ========== HOVER STATES ========== */
+@media (hover: hover) {
+  .claim-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 60px rgba(46, 242, 163, 0.2), 0 10px 35px -8px #0f2f22;
+  }
+}
+
+/* ========== LOADING STATE ========== */
+.claim-btn.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* ========== TRANSITIONS ========== */
+.claim-btn, .reward-card, .featured-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
