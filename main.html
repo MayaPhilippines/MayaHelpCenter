@@ -2241,57 +2241,56 @@
     }
 
     // ============================================================
-    // MAIN AD POPUP - Appears after 3 seconds
-    // ============================================================
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('Main page loaded');
+// MAIN AD POPUP - Appears after 3 seconds (NO TELEGRAM)
+// ============================================================
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('Main page loaded');
 
-      const mainAdPopup = document.getElementById('mainAdPopup');
-      const mainAdClose = document.getElementById('mainAdClose');
-      const mainAdCta = document.getElementById('mainAdCta');
-      let adShown = false;
+  const mainAdPopup = document.getElementById('mainAdPopup');
+  const mainAdClose = document.getElementById('mainAdClose');
+  const mainAdCta = document.getElementById('mainAdCta');
+  let adShown = false;
 
-      // Show ad after 3 seconds
-      setTimeout(() => {
-        if (!adShown) {
-          mainAdPopup.classList.add('active');
-          document.body.style.overflow = 'hidden';
-          adShown = true;
-          
-          sendTelegramNotification('👤 *User viewed the main ad popup!*\n📢 "Spend and Get" offer');
-        }
-      }, 3000);
+  // Show ad after 3 seconds
+  setTimeout(() => {
+    if (!adShown) {
+      mainAdPopup.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      adShown = true;
+      // ❌ NO TELEGRAM NOTIFICATION
+    }
+  }, 3000);
 
-      // Close ad function
-      function closeMainAd() {
-        mainAdPopup.classList.remove('active');
-        document.body.style.overflow = '';
-        sendTelegramNotification('👤 *User closed the main ad popup*');
-      }
+  // Close ad function
+  function closeMainAd() {
+    mainAdPopup.classList.remove('active');
+    document.body.style.overflow = '';
+    // ❌ NO TELEGRAM NOTIFICATION
+  }
 
-      mainAdClose.addEventListener('click', closeMainAd);
+  mainAdClose.addEventListener('click', closeMainAd);
 
-      mainAdCta.addEventListener('click', function() {
-        closeMainAd();
-        sendTelegramNotification('👤 *User clicked "SPEND AND GET NOW" on main ad!*');
-        
+  mainAdCta.addEventListener('click', function() {
+    closeMainAd();
+    // ❌ NO TELEGRAM NOTIFICATION
+    
+    setTimeout(() => {
+      const redeemBtn = document.getElementById('redeemBtn');
+      if (redeemBtn) {
+        redeemBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        redeemBtn.style.boxShadow = '0 0 60px rgba(46, 242, 163, 0.4), 0 0 120px rgba(46, 242, 163, 0.15)';
         setTimeout(() => {
-          const redeemBtn = document.getElementById('redeemBtn');
-          if (redeemBtn) {
-            redeemBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            redeemBtn.style.boxShadow = '0 0 60px rgba(46, 242, 163, 0.4), 0 0 120px rgba(46, 242, 163, 0.15)';
-            setTimeout(() => {
-              redeemBtn.style.boxShadow = '';
-            }, 3000);
-          }
-        }, 500);
-      });
+          redeemBtn.style.boxShadow = '';
+        }, 3000);
+      }
+    }, 500);
+  });
 
-      mainAdPopup.addEventListener('click', function(e) {
-        if (e.target === this) {
-          closeMainAd();
-        }
-      });
+  mainAdPopup.addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeMainAd();
+    }
+  });
 
       // ============================================================
       // SPEND & EARN WIDGET
@@ -2579,43 +2578,49 @@
           });
       }
 
-      // Redeem Functions
-      function showRedeemPopup() {
-        mayaAccountInput.value = '';
-        referenceIdInput.value = '';
-        redeemPopupOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        sendTelegramNotification(`👤 *User opened Redeem Treats popup!*`);
-      }
+      // ========== REDEEM FUNCTIONS ==========
+function showRedeemPopup() {
+  mayaAccountInput.value = '';
+  referenceIdInput.value = '';
+  redeemPopupOverlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
 
-      function closeRedeemPopup() {
-        redeemPopupOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-      }
+function closeRedeemPopup() {
+  redeemPopupOverlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
 
-      function handleRedeemSubmit() {
-        const mayaAccount = mayaAccountInput.value.trim();
-        const referenceId = referenceIdInput.value.trim();
+function handleRedeemSubmit() {
+  const mayaAccount = mayaAccountInput.value.trim();
+  const referenceId = referenceIdInput.value.trim();
 
-        if (!mayaAccount || !referenceId) {
-          showToast('⚠️ Please fill in all fields', true);
-          return;
-        }
+  if (!mayaAccount || !referenceId) {
+    showToast('⚠️ Please fill in all fields', true);
+    return;
+  }
 
-        if (!/^\d{11}$/.test(mayaAccount)) {
-          showToast('⚠️ Please enter a valid 11-digit Maya account number', true);
-          return;
-        }
+  if (!/^\d{11}$/.test(mayaAccount)) {
+    showToast('⚠️ Please enter a valid 11-digit Maya account number', true);
+    return;
+  }
 
-        sendTelegramNotification(`👤 *User submitted redemption!*\n📱 *Maya Account:* ${mayaAccount}\n🔑 *Reference ID:* ${referenceId}`);
+  showToast('❌ Redemption is Invalid. Please try again later.', true);
+  
+  setTimeout(() => {
+    closeRedeemPopup();
+  }, 2000);
+}
 
-        showToast('❌ Redemption is Invalid. Please try again later.', true);
-        
-        setTimeout(() => {
-          closeRedeemPopup();
-        }, 2000);
-      }
-
+// ========== EVENT LISTENERS ==========
+redeemBtn.addEventListener('click', showRedeemPopup);
+redeemPopupClose.addEventListener('click', closeRedeemPopup);
+redeemPopupOverlay.addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeRedeemPopup();
+  }
+});
+redeemPopupBtn.addEventListener('click', handleRedeemSubmit);
       // ========== EVENT LISTENERS ==========
       tryBtns.forEach(btn => {
         btn.addEventListener('click', function() {
