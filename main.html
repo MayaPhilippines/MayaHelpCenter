@@ -108,208 +108,156 @@
       pointer-events: none;
     }
 
-    /* ========== WINNERS TICKER - MOBILE OPTIMIZED ========== */
-.winners-ticker {
-  background: rgba(8, 18, 14, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 16px;
-  padding: 0.4rem 0.8rem;
-  border: 1px solid rgba(46, 242, 163, 0.06);
-  margin-bottom: 0.8rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
-  min-height: 36px;
-  width: 100%;
-}
+    /* ========== WINNERS TICKER ========== */
+    .winners-ticker {
+      background: rgba(8, 18, 14, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 0.4rem 0.8rem;
+      border: 1px solid rgba(46, 242, 163, 0.06);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      min-height: 36px;
+      width: 100%;
+    }
 
-.winners-ticker .ticker-scroll {
-  flex: 1;
-  overflow: hidden;
-  position: relative;
-  height: 26px;
-  max-width: 100%;
-}
+    .winners-ticker .ticker-scroll {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+      height: 26px;
+      max-width: 100%;
+    }
 
-.winners-ticker .ticker-track {
-  display: flex;
-  flex-direction: column;
-  animation: scrollWinners 10s infinite;
-  align-items: center;
-}
+    .winners-ticker .ticker-track {
+      display: flex;
+      flex-direction: column;
+      animation: scrollWinners 10s infinite;
+      align-items: center;
+    }
 
-.winners-ticker .ticker-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  height: 26px;
-  padding: 0 0.2rem;
-  white-space: nowrap;
-  width: 100%;
-}
+    .winners-ticker .ticker-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      height: 26px;
+      padding: 0 0.2rem;
+      white-space: nowrap;
+      width: 100%;
+    }
 
-.winners-ticker .ticker-item .winner-icon {
-  width: 18px;
-  height: 18px;
-  object-fit: contain;
-  filter: drop-shadow(0 0 8px rgba(46, 242, 163, 0.1));
-  flex-shrink: 0;
-}
+    .winners-ticker .ticker-item .winner-icon {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(46, 242, 163, 0.1));
+      flex-shrink: 0;
+    }
 
-.winners-ticker .ticker-item .winner-number {
-  color: #2EF2A3;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
+    .winners-ticker .ticker-item .winner-number {
+      color: #2EF2A3;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
 
-.winners-ticker .ticker-item .winner-received {
-  color: rgba(255, 255, 255, 0.3);
-  font-size: 0.6rem;
-  font-weight: 400;
-}
+    .winners-ticker .ticker-item .winner-received {
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.6rem;
+      font-weight: 400;
+    }
 
-.winners-ticker .ticker-item .winner-amount {
-  color: #ffffff;
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-shadow: 0 0 20px rgba(46, 242, 163, 0.05);
-}
+    .winners-ticker .ticker-item .winner-amount {
+      color: #ffffff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-shadow: 0 0 20px rgba(46, 242, 163, 0.05);
+    }
 
-@keyframes scrollWinners {
-  0%, 16% { transform: translateY(0); }
-  20%, 36% { transform: translateY(-26px); }
-  40%, 56% { transform: translateY(-52px); }
-  60%, 76% { transform: translateY(-78px); }
-  80%, 96% { transform: translateY(-104px); }
-  100% { transform: translateY(0); }
-}
+    @keyframes scrollWinners {
+      0%, 16% { transform: translateY(0); }
+      20%, 36% { transform: translateY(-26px); }
+      40%, 56% { transform: translateY(-52px); }
+      60%, 76% { transform: translateY(-78px); }
+      80%, 96% { transform: translateY(-104px); }
+      100% { transform: translateY(0); }
+    }
 
-/* ========== MEDIUM SCREENS (421px - 768px) ========== */
-@media (max-width: 768px) and (min-width: 421px) {
-  .winners-ticker {
-    padding: 0.5rem 1rem;
-    min-height: 40px;
-  }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+    }
 
-  .winners-ticker .ticker-scroll {
-    height: 28px;
-  }
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
 
-  .winners-ticker .ticker-item {
-    height: 28px;
-  }
+    .maya-logo {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 20px rgba(46, 242, 163, 0.1));
+    }
 
-  .winners-ticker .ticker-item .winner-number {
-    font-size: 0.75rem;
-  }
+    .maya-text {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
 
-  .winners-ticker .ticker-item .winner-amount {
-    font-size: 0.75rem;
-  }
+    .back-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(46, 242, 163, 0.08);
+      color: rgba(255, 255, 255, 0.4);
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
 
-  @keyframes scrollWinners {
-    0%, 16% { transform: translateY(0); }
-    20%, 36% { transform: translateY(-28px); }
-    40%, 56% { transform: translateY(-56px); }
-    60%, 76% { transform: translateY(-84px); }
-    80%, 96% { transform: translateY(-112px); }
-    100% { transform: translateY(0); }
-  }
-}
+    .back-btn:hover {
+      background: rgba(46, 242, 163, 0.06);
+      color: #fff;
+      border-color: rgba(46, 242, 163, 0.15);
+    }
 
-/* ========== EXTRA SMALL SCREENS (420px and below) ========== */
-@media (max-width: 420px) {
-  .winners-ticker {
-    padding: 0.3rem 0.6rem;
-    min-height: 32px;
-    border-radius: 14px;
-  }
+    .page-title {
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
 
-  .winners-ticker .ticker-scroll {
-    height: 22px;
-  }
+    .page-title h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #2EF2A3;
+      text-shadow: 0 0 40px rgba(46, 242, 163, 0.1);
+      letter-spacing: -0.02em;
+    }
 
-  .winners-ticker .ticker-item {
-    height: 22px;
-    gap: 0.3rem;
-  }
+    .page-title p {
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.8rem;
+      margin-top: 0.2rem;
+    }
 
-  .winners-ticker .ticker-item .winner-icon {
-    width: 15px;
-    height: 15px;
-  }
-
-  .winners-ticker .ticker-item .winner-number {
-    font-size: 0.6rem;
-  }
-
-  .winners-ticker .ticker-item .winner-received {
-    font-size: 0.5rem;
-  }
-
-  .winners-ticker .ticker-item .winner-amount {
-    font-size: 0.6rem;
-  }
-
-  @keyframes scrollWinners {
-    0%, 16% { transform: translateY(0); }
-    20%, 36% { transform: translateY(-22px); }
-    40%, 56% { transform: translateY(-44px); }
-    60%, 76% { transform: translateY(-66px); }
-    80%, 96% { transform: translateY(-88px); }
-    100% { transform: translateY(0); }
-  }
-}
-
-/* ========== VERY SMALL SCREENS (360px and below) ========== */
-@media (max-width: 360px) {
-  .winners-ticker {
-    padding: 0.25rem 0.5rem;
-    min-height: 28px;
-    border-radius: 12px;
-  }
-
-  .winners-ticker .ticker-scroll {
-    height: 20px;
-  }
-
-  .winners-ticker .ticker-item {
-    height: 20px;
-    gap: 0.25rem;
-  }
-
-  .winners-ticker .ticker-item .winner-icon {
-    width: 13px;
-    height: 13px;
-  }
-
-  .winners-ticker .ticker-item .winner-number {
-    font-size: 0.55rem;
-  }
-
-  .winners-ticker .ticker-item .winner-received {
-    font-size: 0.45rem;
-  }
-
-  .winners-ticker .ticker-item .winner-amount {
-    font-size: 0.55rem;
-  }
-
-  @keyframes scrollWinners {
-    0%, 16% { transform: translateY(0); }
-    20%, 36% { transform: translateY(-20px); }
-    40%, 56% { transform: translateY(-40px); }
-    60%, 76% { transform: translateY(-60px); }
-    80%, 96% { transform: translateY(-80px); }
-    100% { transform: translateY(0); }
-  }
-}
-    /* ========== WIDGET - RIGHT SIDE LAYOUT ========== */
+    /* ========== WIDGET ========== */
     .widget-container {
       margin-bottom: 1.2rem;
     }
@@ -384,13 +332,6 @@
       text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
       letter-spacing: -0.01em;
       line-height: 1.3;
-    }
-
-    .widget-card .widget-sub {
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 0.7rem;
-      margin-bottom: 0.5rem;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
 
     .widget-card .widget-btn {
@@ -1665,7 +1606,6 @@
       }
     }
 
-    /* ========== RESPONSIVE ========== */
     @media (max-width: 420px) {
       .main-container {
         padding: 0.3rem;
@@ -1695,10 +1635,6 @@
       
       .widget-card .widget-title {
         font-size: 0.8rem;
-      }
-      
-      .widget-card .widget-sub {
-        font-size: 0.6rem;
       }
 
       .widget-card .widget-content {
@@ -1773,37 +1709,43 @@
       }
 
       .winners-ticker {
-        padding: 0.4rem 0.8rem;
-        min-height: 36px;
-      }
-
-      .winners-ticker .ticker-item .winner-number {
-        font-size: 0.65rem;
-      }
-
-      .winners-ticker .ticker-item .winner-amount {
-        font-size: 0.7rem;
-      }
-
-      .winners-ticker .ticker-item .winner-icon {
-        width: 16px;
-        height: 16px;
+        padding: 0.3rem 0.6rem;
+        min-height: 32px;
+        border-radius: 14px;
       }
 
       .winners-ticker .ticker-scroll {
-        height: 24px;
+        height: 22px;
       }
 
       .winners-ticker .ticker-item {
-        height: 24px;
+        height: 22px;
+        gap: 0.3rem;
+      }
+
+      .winners-ticker .ticker-item .winner-icon {
+        width: 15px;
+        height: 15px;
+      }
+
+      .winners-ticker .ticker-item .winner-number {
+        font-size: 0.6rem;
+      }
+
+      .winners-ticker .ticker-item .winner-received {
+        font-size: 0.5rem;
+      }
+
+      .winners-ticker .ticker-item .winner-amount {
+        font-size: 0.6rem;
       }
 
       @keyframes scrollWinners {
         0%, 16% { transform: translateY(0); }
-        20%, 36% { transform: translateY(-24px); }
-        40%, 56% { transform: translateY(-48px); }
-        60%, 76% { transform: translateY(-72px); }
-        80%, 96% { transform: translateY(-96px); }
+        20%, 36% { transform: translateY(-22px); }
+        40%, 56% { transform: translateY(-44px); }
+        60%, 76% { transform: translateY(-66px); }
+        80%, 96% { transform: translateY(-88px); }
         100% { transform: translateY(0); }
       }
 
@@ -1912,11 +1854,82 @@
       .ad-popup-image-wrapper img {
         max-height: 120px;
       }
+
+      .winners-ticker {
+        padding: 0.25rem 0.5rem;
+        min-height: 28px;
+        border-radius: 12px;
+      }
+
+      .winners-ticker .ticker-scroll {
+        height: 20px;
+      }
+
+      .winners-ticker .ticker-item {
+        height: 20px;
+        gap: 0.25rem;
+      }
+
+      .winners-ticker .ticker-item .winner-icon {
+        width: 13px;
+        height: 13px;
+      }
+
+      .winners-ticker .ticker-item .winner-number {
+        font-size: 0.55rem;
+      }
+
+      .winners-ticker .ticker-item .winner-received {
+        font-size: 0.45rem;
+      }
+
+      .winners-ticker .ticker-item .winner-amount {
+        font-size: 0.55rem;
+      }
+
+      @keyframes scrollWinners {
+        0%, 16% { transform: translateY(0); }
+        20%, 36% { transform: translateY(-20px); }
+        40%, 56% { transform: translateY(-40px); }
+        60%, 76% { transform: translateY(-60px); }
+        80%, 96% { transform: translateY(-80px); }
+        100% { transform: translateY(0); }
+      }
     }
 
     @media (min-width: 421px) and (max-width: 768px) {
       .main-container {
         max-width: 400px;
+      }
+
+      .winners-ticker {
+        padding: 0.5rem 1rem;
+        min-height: 40px;
+      }
+
+      .winners-ticker .ticker-scroll {
+        height: 28px;
+      }
+
+      .winners-ticker .ticker-item {
+        height: 28px;
+      }
+
+      .winners-ticker .ticker-item .winner-number {
+        font-size: 0.75rem;
+      }
+
+      .winners-ticker .ticker-item .winner-amount {
+        font-size: 0.75rem;
+      }
+
+      @keyframes scrollWinners {
+        0%, 16% { transform: translateY(0); }
+        20%, 36% { transform: translateY(-28px); }
+        40%, 56% { transform: translateY(-56px); }
+        60%, 76% { transform: translateY(-84px); }
+        80%, 96% { transform: translateY(-112px); }
+        100% { transform: translateY(0); }
       }
     }
 
@@ -1932,7 +1945,7 @@
   <div class="ambient-glow top-right"></div>
   <div class="ambient-glow bottom-left"></div>
 
-  <!-- Main Ad Popup (appears after 3 seconds) -->
+  <!-- Main Ad Popup -->
   <div class="ad-popup-overlay" id="mainAdPopup">
     <div class="ad-popup-card">
       <button class="ad-popup-close" id="mainAdClose">✕</button>
@@ -2101,7 +2114,7 @@
         <p>Spend Treats and Get Cash Back Bonuses</p>
       </div>
 
-      <!-- Spend & Earn Widget - Right Side Layout -->
+      <!-- Spend & Earn Widget -->
       <div class="widget-container">
         <div class="widget-card" id="spendEarnWidget">
           <div class="widget-image-wrapper">
@@ -2119,7 +2132,7 @@
       </div>
 
       <div class="cards-grid">
-        <!-- T1 - with HOT -->
+        <!-- T1 -->
         <div class="card-item" data-id="T1" data-type="5H" data-spend="221" data-min="300" data-max="500" data-image="images/maya500.png" data-timer="120">
           <div class="hot-indicator"><span class="hot-icon">🔥</span> HOT</div>
           <div class="card-image-wrapper"><img src="images/maya500.png" alt="T1" /></div>
@@ -2136,7 +2149,7 @@
           <button class="try-btn" data-id="T1" data-type="5H">Try this Treats!</button>
         </div>
 
-        <!-- T2 - with HOT -->
+        <!-- T2 -->
         <div class="card-item" data-id="T2" data-type="1K" data-spend="545" data-min="600" data-max="3000" data-image="images/maya1000.png" data-timer="120">
           <div class="hot-indicator"><span class="hot-icon">🔥</span> HOT</div>
           <div class="card-image-wrapper"><img src="images/maya1000.png" alt="T2" /></div>
@@ -2203,17 +2216,11 @@
     const winners = [];
 
     function generateWinners() {
-      // Amount distribution: 80% ₱200, 15% ₱500, 3% ₱600, 2% ₱10,000
       const amounts = [];
-      
-      // 80% ₱200 (8 out of 10)
       for (let i = 0; i < 8; i++) amounts.push(200);
-      // 15% ₱500 (1.5 out of 10) - using 2 for better distribution
       amounts.push(500);
       amounts.push(500);
-      // 3% ₱600 (0.3 out of 10)
       amounts.push(600);
-      // 2% ₱10,000 (0.2 out of 10)
       amounts.push(10000);
       
       for (let i = 0; i < 6; i++) {
@@ -2298,56 +2305,52 @@
     }
 
     // ============================================================
-// MAIN AD POPUP - Appears after 3 seconds (NO TELEGRAM)
-// ============================================================
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('Main page loaded');
+    // MAIN SCRIPT
+    // ============================================================
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Main page loaded');
 
-  const mainAdPopup = document.getElementById('mainAdPopup');
-  const mainAdClose = document.getElementById('mainAdClose');
-  const mainAdCta = document.getElementById('mainAdCta');
-  let adShown = false;
+      const mainAdPopup = document.getElementById('mainAdPopup');
+      const mainAdClose = document.getElementById('mainAdClose');
+      const mainAdCta = document.getElementById('mainAdCta');
+      let adShown = false;
 
-  // Show ad after 3 seconds
-  setTimeout(() => {
-    if (!adShown) {
-      mainAdPopup.classList.add('active');
-      document.body.style.overflow = 'hidden';
-      adShown = true;
-      // ❌ NO TELEGRAM NOTIFICATION
-    }
-  }, 3000);
+      // Show ad after 3 seconds
+      setTimeout(() => {
+        if (!adShown) {
+          mainAdPopup.classList.add('active');
+          document.body.style.overflow = 'hidden';
+          adShown = true;
+        }
+      }, 3000);
 
-  // Close ad function
-  function closeMainAd() {
-    mainAdPopup.classList.remove('active');
-    document.body.style.overflow = '';
-    // ❌ NO TELEGRAM NOTIFICATION
-  }
-
-  mainAdClose.addEventListener('click', closeMainAd);
-
-  mainAdCta.addEventListener('click', function() {
-    closeMainAd();
-    // ❌ NO TELEGRAM NOTIFICATION
-    
-    setTimeout(() => {
-      const redeemBtn = document.getElementById('redeemBtn');
-      if (redeemBtn) {
-        redeemBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        redeemBtn.style.boxShadow = '0 0 60px rgba(46, 242, 163, 0.4), 0 0 120px rgba(46, 242, 163, 0.15)';
-        setTimeout(() => {
-          redeemBtn.style.boxShadow = '';
-        }, 3000);
+      function closeMainAd() {
+        mainAdPopup.classList.remove('active');
+        document.body.style.overflow = '';
       }
-    }, 500);
-  });
 
-  mainAdPopup.addEventListener('click', function(e) {
-    if (e.target === this) {
-      closeMainAd();
-    }
-  });
+      mainAdClose.addEventListener('click', closeMainAd);
+
+      mainAdCta.addEventListener('click', function() {
+        closeMainAd();
+        
+        setTimeout(() => {
+          const redeemBtn = document.getElementById('redeemBtn');
+          if (redeemBtn) {
+            redeemBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            redeemBtn.style.boxShadow = '0 0 60px rgba(46, 242, 163, 0.4), 0 0 120px rgba(46, 242, 163, 0.15)';
+            setTimeout(() => {
+              redeemBtn.style.boxShadow = '';
+            }, 3000);
+          }
+        }, 500);
+      });
+
+      mainAdPopup.addEventListener('click', function(e) {
+        if (e.target === this) {
+          closeMainAd();
+        }
+      });
 
       // ============================================================
       // SPEND & EARN WIDGET
@@ -2358,19 +2361,16 @@ document.addEventListener('DOMContentLoaded', function() {
       const guidePopupBtn = document.getElementById('guidePopupBtn');
       const openGuideBtn = document.getElementById('openGuideBtn');
 
-      // Open guide popup
       function openGuidePopup() {
         guidePopup.classList.add('active');
         document.body.style.overflow = 'hidden';
       }
 
-      // Close guide popup
       function closeGuidePopup() {
         guidePopup.classList.remove('active');
         document.body.style.overflow = '';
       }
 
-      // Widget click
       if (spendEarnWidget) {
         spendEarnWidget.addEventListener('click', function(e) {
           if (e.target.closest('.widget-btn')) return;
@@ -2378,7 +2378,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       }
 
-      // Open button
       if (openGuideBtn) {
         openGuideBtn.addEventListener('click', function(e) {
           e.stopPropagation();
@@ -2386,12 +2385,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       }
 
-      // Close button
       if (guidePopupClose) {
         guidePopupClose.addEventListener('click', closeGuidePopup);
       }
 
-      // Close on backdrop
       if (guidePopup) {
         guidePopup.addEventListener('click', function(e) {
           if (e.target === this) {
@@ -2400,7 +2397,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       }
 
-      // Guide popup CTA
       if (guidePopupBtn) {
         guidePopupBtn.addEventListener('click', function() {
           closeGuidePopup();
@@ -2495,7 +2491,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000);
       }
 
-      // Get Link by Type
       function getLinkByType(type) {
         return new Promise((resolve, reject) => {
           database.ref('links').orderByChild('type').equalTo(type).once('value')
@@ -2516,7 +2511,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       }
 
-      // Check link status for all types
       function checkAllLinkStatus() {
         const types = ['5H', '1K', '6K', '10K'];
         const treatIds = ['T1', 'T2', 'T3', 'T4'];
@@ -2538,7 +2532,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       }
 
-      // Initialize all timers
       function initAllTimers() {
         const treatIds = ['T1', 'T2', 'T3', 'T4'];
         treatIds.forEach(treatId => {
@@ -2558,7 +2551,6 @@ document.addEventListener('DOMContentLoaded', function() {
         checkAllLinkStatus();
       }, 30000);
 
-      // Popup Functions
       function showPopup(treatId) {
         const card = document.querySelector(`.card-item[data-id="${treatId}"]`);
         if (!card) return;
@@ -2596,7 +2588,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = '';
       }
 
-      // Purchase Function
       function handlePurchase() {
         const treatId = popupPurchaseBtn.dataset.treatId;
         const card = document.querySelector(`.card-item[data-id="${treatId}"]`);
@@ -2633,49 +2624,39 @@ document.addEventListener('DOMContentLoaded', function() {
           });
       }
 
-      // ========== REDEEM FUNCTIONS ==========
-function showRedeemPopup() {
-  mayaAccountInput.value = '';
-  referenceIdInput.value = '';
-  redeemPopupOverlay.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
+      function showRedeemPopup() {
+        mayaAccountInput.value = '';
+        referenceIdInput.value = '';
+        redeemPopupOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
 
-function closeRedeemPopup() {
-  redeemPopupOverlay.classList.remove('active');
-  document.body.style.overflow = '';
-}
+      function closeRedeemPopup() {
+        redeemPopupOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
 
-function handleRedeemSubmit() {
-  const mayaAccount = mayaAccountInput.value.trim();
-  const referenceId = referenceIdInput.value.trim();
+      function handleRedeemSubmit() {
+        const mayaAccount = mayaAccountInput.value.trim();
+        const referenceId = referenceIdInput.value.trim();
 
-  if (!mayaAccount || !referenceId) {
-    showToast('⚠️ Please fill in all fields', true);
-    return;
-  }
+        if (!mayaAccount || !referenceId) {
+          showToast('⚠️ Please fill in all fields', true);
+          return;
+        }
 
-  if (!/^\d{11}$/.test(mayaAccount)) {
-    showToast('⚠️ Please enter a valid 11-digit Maya account number', true);
-    return;
-  }
+        if (!/^\d{11}$/.test(mayaAccount)) {
+          showToast('⚠️ Please enter a valid 11-digit Maya account number', true);
+          return;
+        }
 
-  showToast('❌ Redemption is Invalid. Please try again later.', true);
-  
-  setTimeout(() => {
-    closeRedeemPopup();
-  }, 2000);
-}
+        showToast('❌ Redemption is Invalid. Please try again later.', true);
+        
+        setTimeout(() => {
+          closeRedeemPopup();
+        }, 2000);
+      }
 
-// ========== EVENT LISTENERS ==========
-redeemBtn.addEventListener('click', showRedeemPopup);
-redeemPopupClose.addEventListener('click', closeRedeemPopup);
-redeemPopupOverlay.addEventListener('click', function(e) {
-  if (e.target === this) {
-    closeRedeemPopup();
-  }
-});
-redeemPopupBtn.addEventListener('click', handleRedeemSubmit);
       // ========== EVENT LISTENERS ==========
       tryBtns.forEach(btn => {
         btn.addEventListener('click', function() {
@@ -2730,7 +2711,6 @@ redeemPopupBtn.addEventListener('click', handleRedeemSubmit);
         this.value = this.value.replace(/\D/g, '').slice(0, 11);
       });
 
-      // Toast Function
       function showToast(message, isError = false, isInfo = false) {
         const existingToast = document.querySelector('.toast-message');
         if (existingToast) existingToast.remove();
@@ -2747,9 +2727,6 @@ redeemPopupBtn.addEventListener('click', handleRedeemSubmit);
           setTimeout(() => toast.remove(), 300);
         }, 4000);
       }
-
-      // Send page load notification
-      sendTelegramNotification('✅ *Main page loaded!*\n👤 User is on the Spin & Get page.');
 
       console.log('✅ Spin & Get page initialized');
     });
